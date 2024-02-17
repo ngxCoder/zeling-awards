@@ -136,6 +136,13 @@ Todos los comandos se ejecutan desde la raíz del proyecto, desde una terminal:
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://ngxcoder.dev/"><img src="https://avatars.githubusercontent.com/u/87735757?v=4?s=100" width="100px;" alt="ngxCoder"/><br /><sub><b>ngxCoder</b></sub></a><br /><a href="#code-ngxCoder" title="Code">💻</a> <a href="#doc-ngxCoder" title="Documentation">📖</a> <a href="#ideas-ngxCoder" title="Ideas, Planning, & Feedback">🤔</a> <a href="#projectManagement-ngxCoder" title="Project Management">📆</a> <a href="#research-ngxCoder" title="Research">🔬</a></td>
+    </tr>
+  </tbody>
+</table>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
