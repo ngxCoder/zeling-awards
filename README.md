@@ -19,44 +19,44 @@ Sitio que recopila los votos de la comunidad para los mejores momentos de Zeling
 ## Ruta de Proyecto
 
 - [ ] **Setup del Proyecto:**
-Integrar ESLint, Prettier, TailwindCSS, Firebase y otros
+      Integrar ESLint, Prettier, TailwindCSS, Firebase y otros
 
 - [ ] **Diseño de base de datos y planificación de la solución:**
-Diseñar, analizar y planificar como se persistirá la información considerando el login y votaciones
+      Diseñar, analizar y planificar como se persistirá la información considerando el login y votaciones
 
 - [ ] **Planificación y Configuración de Tema:** Planificar tema de colores armónico, tipografía, configurar TailwindCSS
 
 - [ ] **Diseño de página inicial:**
-Diseñar y programar los componentes para la página inicial siguiendo el diseño
+      Diseñar y programar los componentes para la página inicial siguiendo el diseño
 
 - [ ] **Diseño de página de votación cada categoría:**
-Diseñar y programar los componentes para la página de votaciones
+      Diseñar y programar los componentes para la página de votaciones
 
 - [ ] **Inicio de sesión (OAuth):**
-Implementar un flujo Oauth de Twitch
+      Implementar un flujo Oauth de Twitch
 
 - [ ] **Diseño de endpoints:**
-Diseñar todo lo relacionado a los endpoints y la conexión con la base de datos
+      Diseñar todo lo relacionado a los endpoints y la conexión con la base de datos
 
 - [ ] **Módulo de Votaciones**
-Implementar restricciones para el voto de cada usuario que inicio sesión
+      Implementar restricciones para el voto de cada usuario que inicio sesión
 
 - [ ] **Diseño de página de Acerca de:**
-Diseñar y programar los componentes para describir el rol de cada uno de los involucrados
+      Diseñar y programar los componentes para describir el rol de cada uno de los involucrados
 
 - [ ] **Diseño de página de Categorias:**
-Diseñar y programar los componentes para describir las categorías
+      Diseñar y programar los componentes para describir las categorías
 
 - [ ] **Despliegue**
-Contemplar todo lo que involucra desplegar el sitio y configurar la integración continua con Github Actions
+      Contemplar todo lo que involucra desplegar el sitio y configurar la integración continua con Github Actions
 
 - [ ] **Ajustes generales de SEO:**
-Incluir meta tags, robot.txt, title, descriptions y otros
+      Incluir meta tags, robot.txt, title, descriptions y otros
 
 ---
 
 - [ ] **Módulo de Gestión de Clips:**
-Se tiene pensado permitir a los usuarios subir clips directamente al sitio, eligiendo la categoría para una nominación preliminar. Se debe contemplar el CRUD de clips y relacionarlo con categorías prediseñadas para cada usuario.
+      Se tiene pensado permitir a los usuarios subir clips directamente al sitio, eligiendo la categoría para una nominación preliminar. Se debe contemplar el CRUD de clips y relacionarlo con categorías prediseñadas para cada usuario.
 
 ## Requisitos
 
@@ -109,11 +109,13 @@ npm install
 ```
 
 3. Crea un branch a partir de develop
+
 ```sh
 git checkout develop
 git pull develop
 git checkout -b feature/landing-page
 ```
+
 4. Aplicar cambios
 
 5. Crear un Pull Request apuntando a develop
@@ -122,14 +124,14 @@ git checkout -b feature/landing-page
 
 Todos los comandos se ejecutan desde la raíz del proyecto, desde una terminal:
 
-| Comando                   | Acción                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Instala dependencias                            |
-| `npm run dev`             | Inicia el servidor de desarrollo local en `localhost:4321`      |
-| `npm run build`           | Buildea el sitio para producción en `./dist/`          |
-| `npm run preview`         | Previsualiza el sitio productivo localmente     |
-| `npm run astro ...`       | Ejecute comandos como `astro add`, `astro check` |
-| `npm run astro -- --help` | Documentación                    |
+| Comando                   | Acción                                                     |
+| :------------------------ | :--------------------------------------------------------- |
+| `npm install`             | Instala dependencias                                       |
+| `npm run dev`             | Inicia el servidor de desarrollo local en `localhost:4321` |
+| `npm run build`           | Buildea el sitio para producción en `./dist/`              |
+| `npm run preview`         | Previsualiza el sitio productivo localmente                |
+| `npm run astro ...`       | Ejecute comandos como `astro add`, `astro check`           |
+| `npm run astro -- --help` | Documentación                                              |
 
 ## Contributors
 
