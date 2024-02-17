@@ -131,7 +131,7 @@ Todos los comandos se ejecutan desde la raíz del proyecto, desde una terminal:
 | `npm run astro ...`       | Ejecute comandos como `astro add`, `astro check` |
 | `npm run astro -- --help` | Documentación                    |
 
-## Contribuidores
+## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->

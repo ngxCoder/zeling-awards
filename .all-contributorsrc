@@ -1,6 +1,10 @@
 {
   "projectName": "zeling-awards",
-  "projectOwner": "ngxCoder",
+  "projectOwner": "zeling-awards",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "imageSize": 64,
+  "commit": true,
   "files": [
     "README.md"
   ],
