@@ -1,4 +1,10 @@
 {
   "projectName": "zeling-awards",
-  "projectOwner": "ngxcoder"
+  "projectOwner": "zeling-awards",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "imageSize": 64,
+  "commit": true
+  
 }
+  
