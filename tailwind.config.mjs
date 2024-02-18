@@ -79,7 +79,7 @@ export default {
 				},
 			},
 			fontFamily: {
-				sans: ['Montserrat Variable', ...defaultTheme.fontFamily.sans],
+				sans: ['Metropolis', ...defaultTheme.fontFamily.sans],
 			  },
 		},
 	},
