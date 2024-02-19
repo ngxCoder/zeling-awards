@@ -1,7 +1,22 @@
 ---
 import Button from '../components/Button.astro'
+import Card from '../components/Card.astro'
 import Colors from '../enums/colors'
 import Layout from '../layouts/Layout.astro'
+import SectionContainer from '../components/SectionContainer.astro'
+import type { Category } from '../models/Category'
+
+const categories: Category[] = [
+  {
+    name: 'Category 1'
+  },
+  {
+    name: 'Category 2'
+  },
+  {
+    name: 'Category 3'
+  }
+]
 ---
 
 <Layout title='Sepe Awards' description='TBD'>
@@ -23,4 +38,17 @@ import Layout from '../layouts/Layout.astro'
   >
     Vota aquí
   </Button>
+
+  <!-- Categories -->
+  <SectionContainer className='pb-24 pt-44' id='1'>
+    <div class='flex gap-10'>
+      {
+        categories.map((cat) => (
+          <div class='grow'>
+            <Card body='hello world' href='/' title='XD' />
+          </div>
+        ))
+      }
+    </div>
+  </SectionContainer>
 </Layout>

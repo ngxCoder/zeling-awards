@@ -1,4 +1,7 @@
 ---
+import Colors from '../enums/colors'
+import Button from './Button.astro'
+
 interface Props {
   title: string
   body: string
@@ -8,14 +11,11 @@ interface Props {
 const { href, title, body } = Astro.props
 ---
 
-<li class='link-card'>
-  <a href={href}>
-    <h2>
-      {title}
-      <span>&rarr;</span>
-    </h2>
-    <p>
-      {body}
-    </p>
-  </a>
-</li>
+<div class='flex h-[450px] flex-col bg-cotton-candy p-5'>
+  <div class='grow'><!-- TODO: Aquí irá la info de la categoría --></div>
+  <div class='text-center'>
+    <Button customClasses='mt-3' size='xs' color={Colors.BlackPearl}
+      >Ver más</Button
+    >
+  </div>
+</div>
