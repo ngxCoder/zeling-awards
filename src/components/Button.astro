@@ -1,0 +1,125 @@
+---
+import Colors from '../enums/colors'
+
+interface Props {
+  variant?: 'solid' | 'outline'
+  size?: 'xs' | 'md' | 'lg' | 'xl'
+  color: Colors
+  customClasses?: string
+}
+
+const {
+  variant = 'solid',
+  size = 'md',
+  color = Colors.BlackPearl,
+  customClasses = ''
+} = Astro.props
+
+const config = {
+  ringColor: '',
+  bgColor: '',
+  textColor: '',
+  size: '',
+  fontSize: ''
+}
+
+switch (size) {
+  case 'xs':
+    config.size = 'px-3 py-1'
+    config.fontSize = 'text-xl'
+    break
+
+  case 'md':
+    config.size = 'px-3 py-1'
+    config.fontSize = 'text-3xl'
+    break
+
+  case 'lg':
+    config.size = 'px-5 py-3'
+    config.fontSize = 'text-5xl'
+    break
+
+  case 'xl':
+    config.size = 'px-7 py-5'
+    config.fontSize = 'text-7xl'
+    break
+}
+
+switch (color) {
+  case Colors.BlackPearl:
+    switch (variant) {
+      case 'solid':
+        config.textColor = 'text-gray-300'
+        config.bgColor = 'bg-black-pearl'
+        break
+
+      case 'outline':
+        config.textColor = 'text-black-pearl'
+        config.ringColor = 'ring-2 ring-black-pearl'
+        break
+    }
+    break
+
+  case Colors.CottonCandy:
+    switch (variant) {
+      case 'solid':
+        config.textColor = 'text-gray-900'
+        config.bgColor = 'bg-cotton-candy'
+        break
+
+      case 'outline':
+        config.textColor = 'text-cotton-candy'
+        config.ringColor = 'ring-2 ring-cotton-candy'
+        break
+    }
+    break
+
+  case Colors.Glacier:
+    switch (variant) {
+      case 'solid':
+        config.textColor = 'text-gray-900'
+        config.bgColor = 'bg-glacier'
+        break
+
+      case 'outline':
+        config.textColor = 'text-glacier'
+        config.ringColor = 'ring-2 ring-glacier'
+        break
+    }
+    break
+
+  case Colors.Dandelion:
+    switch (variant) {
+      case 'solid':
+        config.textColor = 'text-gray-900'
+        config.bgColor = 'bg-dandelion'
+        break
+
+      case 'outline':
+        config.textColor = 'text-dandelion'
+        config.ringColor = 'ring-2 ring-dandelion'
+        break
+    }
+    break
+
+  case Colors.Carnation:
+    switch (variant) {
+      case 'solid':
+        config.textColor = 'text-gray-300'
+        config.bgColor = 'bg-carnation'
+        break
+
+      case 'outline':
+        config.ringColor = 'ring-2 ring-carnation'
+        break
+    }
+    break
+}
+---
+
+<button
+  type='button'
+  class={`${config.ringColor} ${config.bgColor} ${config.textColor} ${config.size} ${config.fontSize} ${customClasses}`}
+>
+  <slot />
+</button>
