@@ -1,0 +1,144 @@
+---
+import Candidate from '../../components/Candidate.astro'
+import VotingLayout from '../../layouts/VotingLayout.astro'
+
+// IMPORTAR LISTAS DE PRUEBA
+import Categories from '../../enums/categories'
+import Candidates from '../../enums/candidates'
+
+// CARGA CANDIDATOS Y LINKS A CATEGORIAS PREV Y SIG
+export async function getStaticPaths() {
+  let m_prev
+  let m_next
+  return Categories.map((categoria) => {
+    m_prev = Categories[Categories.indexOf(categoria) - 1]
+    m_next = Categories[Categories.indexOf(categoria) + 1]
+    if (Categories.indexOf(categoria) == 0) {
+      m_prev = './'
+    }
+    if (Categories.indexOf(categoria) == Categories.length - 1) {
+      m_next = './'
+    }
+    return {
+      params: { categoria },
+      props: {
+        Candidate_1: Candidates[Categories.indexOf(categoria)][0],
+        Candidate_2: Candidates[Categories.indexOf(categoria)][1],
+        Candidate_3: Candidates[Categories.indexOf(categoria)][2],
+        Candidate_4: Candidates[Categories.indexOf(categoria)][3],
+        m_prev,
+        m_next
+      }
+    }
+  })
+}
+
+const title = Astro.params.categoria
+const candidate1 = Astro.props.Candidate_1
+const candidate2 = Astro.props.Candidate_2
+const candidate3 = Astro.props.Candidate_3
+const candidate4 = Astro.props.Candidate_4
+const prev = Astro.props.m_prev
+const next = Astro.props.m_next
+
+const colors = {
+  text: 'cotton-candy',
+  pagination: 'text-glacier-100',
+  voteButton: 'bg-cotton-candy',
+  voteButtonRing: 'shadow-[-10px_10px_black,-10px_10px_0_2px_rgb(255,184,208)]',
+  voteButtonSelection: 'from-cotton-candy to-cotton-candy-400'
+}
+---
+
+<VotingLayout title={title} description='Votaciones'>
+  <div class='mt-20 grid items-center justify-center gap-y-20'>
+    <!-- TITULO DE CATEGORIA -->
+    <div class='title flex flex-col items-center'>
+      <h1
+        class=`underline lg:no-underline text-[4rem] font-semibold tracking-wide text-${colors.text}`
+      >
+        {title}
+      </h1>
+      <span class=`block lg:w-[51rem] h-[4px] bg-${colors.text}`></span>
+    </div>
+
+    <!-- FORMULARIO DE VOTACION -->
+    <form
+      class='flex w-screen flex-col gap-8 min-[1569px]:mt-20 min-[1569px]:gap-48 [&>div>input]:has-[:checked]:bg-gradient-to-tr'
+      action='#'
+      method='#'
+    >
+      <!-- CANDIDATOS -->
+      <div class='flex flex-wrap justify-center gap-2 self-center'>
+        <div class='flex flex-wrap justify-center gap-2 self-center'>
+          <Candidate
+            categoria={title}
+            title={candidate1[0]}
+            image={candidate1[1]}
+            href={candidate1[2]}
+            id='1'
+          />
+          <Candidate
+            categoria={title}
+            title={candidate2[0]}
+            image={candidate2[1]}
+            href={candidate2[2]}
+            id='2'
+          />
+        </div>
+        <div class='flex flex-wrap justify-center gap-2 self-center'>
+          <Candidate
+            categoria={title}
+            title={candidate3[0]}
+            image={candidate3[1]}
+            href={candidate3[2]}
+            id='3'
+          />
+          <Candidate
+            categoria={title}
+            title={candidate4[0]}
+            image={candidate4[1]}
+            href={candidate4[2]}
+            id='4'
+          />
+        </div>
+      </div>
+
+      <!-- BOTONES DE NAVEGACION Y CONFIRMACION -->
+      <div class='flex justify-between sm:px-28'>
+        <!-- BOTON PREV -->
+        <a href={prev} class=`px-5 text-[1.75rem] ${colors.pagination}`
+          ><div
+            class="h-16 w-20
+          bg-[url('../../assets/arrow.svg')] bg-no-repeat"
+          >
+          </div>
+          Prev
+        </a>
+        <!-- BOTON VOTAR -->
+        <input
+          type='button'
+          value='Votar'
+          class=`cursor-pointer ${colors.voteButton}
+        ${colors.voteButtonSelection} px-16 max-h-16 font-bold tracking-wide
+        ${colors.voteButtonRing}
+      
+        transition-all hover:-translate-x-5 hover:translate-y-2
+        hover:shadow-none hover:transition-all text-[2rem]`
+        />
+        <!-- BOTON SIG -->
+        <a
+          href={next}
+          class=`px-5 text-[1.75rem] ${colors.pagination}
+      text-center`
+          ><div
+            class="h-16 w-20 rotate-180
+        bg-[url('../../assets/arrow.svg')] bg-no-repeat"
+          >
+          </div>
+          Sig
+        </a>
+      </div>
+    </form>
+  </div>
+</VotingLayout>

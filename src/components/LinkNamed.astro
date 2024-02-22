@@ -1,0 +1,12 @@
+---
+interface Props {
+  title: string
+  href: string
+}
+
+const { title, href } = Astro.props
+---
+
+<a class='bg-cotton-candy-300 p-5 hover:bg-cotton-candy-400' href={href}>
+  {title}
+</a>

@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/Layout.astro'
+
+import LinkNamed from '../../components/LinkNamed.astro'
+
+import Categories from '../../enums/categories'
+
+const pageTitle = 'Categorias'
+---
+
+<BaseLayout title={pageTitle} description='Categorias'>
+  <div class='h-50 m-2 flex flex-row flex-wrap bg-red-500'>
+    {
+      Categories.map((cat) => (
+        <LinkNamed title={cat} href={`/categorias/${cat}`} />
+      ))
+    }
+  </div>
+</BaseLayout>
