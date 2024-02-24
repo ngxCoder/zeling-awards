@@ -1,0 +1,21 @@
+---
+import Button from './Button.astro'
+import Colors from './../enums/colors'
+import Discord from './icons/Discord.astro'
+---
+
+<header class='flex flex-row gap-7 bg-cotton-candy p-5 text-2xl'>
+  <div class='h-10 w-10 rounded-full bg-white'></div>
+
+  <nav class='flex items-center justify-center gap-7'>
+    <a href='#'>Vota</a>
+    <a href='#'>Categorias</a>
+  </nav>
+  <div class='flex-grow'></div>
+  <Button color={Colors.BlackPearl} variant={'outline'} size={'md'}>
+    <div class='flex'>
+      <Discord class='mr-2 size-10' />
+      <span>Discord</span>
+    </div>
+  </Button>
+</header>
