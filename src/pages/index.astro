@@ -4,7 +4,11 @@ import Card from '../components/Card.astro'
 import Colors from '../enums/colors'
 import Layout from '../layouts/Layout.astro'
 import SectionContainer from '../components/SectionContainer.astro'
+import Jumbotron from '../components/Jumbotron.astro'
+import LinkedList from '../components/LinkedList.astro'
 import type { Category } from '../models/Category'
+import bgSepe1 from '../../public/bg-sepe1.webp'
+import bgSepe2 from '../../public/bg-sepe2.webp'
 
 const categories: Category[] = [
   {
@@ -15,6 +19,25 @@ const categories: Category[] = [
   },
   {
     name: 'Category 3'
+  }
+]
+const items = [
+  {
+    title: null,
+    text: 'El evento constará de 3 fases, en cada una podrás participar para hacer que tu clip-momento llegue a la cima.',
+    active: true
+  },
+  {
+    title: 'Categorías y Votaciones',
+    text: 'Se presentarán las categorías donde podrás sugerir clips.'
+  },
+  {
+    title: 'Finalistas',
+    text: 'Se escogerán los 4 clips más votados y podrás hacer tus votaciones por el finalista.'
+  },
+  {
+    title: 'Premiación',
+    text: 'Se presentarán a los ganadores de cada categoría.'
   }
 ]
 ---
@@ -39,8 +62,34 @@ const categories: Category[] = [
     Vota aquí
   </Button>
 
+  <SectionContainer className='pb-24 pt-44' id='2'>
+    <Jumbotron bgImage={bgSepe1} extraClasses='justify-center pl-20'>
+      <div class='w-2/5 text-2xl leading-7'>
+        <p class='mb-2 text-4xl'>
+          ¡Bienvenido/a a los <span class='font-bold text-carnation-300'
+            >Zelings Awards</span
+          >!
+        </p>
+        Únete al evento exclusivo del mejor chat de Twitch, donde tú tienes el poder
+        de elegir y celebrar los momentos más memorables del año que nos hicieron
+        reír, llorar y morir del cringe.
+      </div>
+    </Jumbotron>
+  </SectionContainer>
+  <SectionContainer id='3'>
+    <Jumbotron bgImage={bgSepe2} extraClasses='text-right pr-20 justify-center'>
+      <h3 class='text-6xl font-bold text-cotton-candy'>Funcionamiento</h3>
+      <div>
+        <div class='inline-block w-1/2'></div>
+        <div class='inline-block w-1/2 text-2xl leading-7'>
+          <LinkedList items={items} />
+        </div>
+      </div>
+    </Jumbotron>
+  </SectionContainer>
+
   <!-- Categories -->
-  <SectionContainer className='pb-24 pt-44' id='1'>
+  <SectionContainer className='pb-24 pt-44' id='4'>
     <div class='flex gap-10'>
       {
         categories.map((cat) => (

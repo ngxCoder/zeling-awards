@@ -1,0 +1,25 @@
+---
+const {
+  bgImage: { height, width, src },
+  extraClasses
+} = Astro.props
+
+const imgSrc = `url(${src})`
+---
+
+<div class='bg-gray-900 text-white'>
+  <div
+    class:list={['container mx-auto flex flex-col px-4 py-12', extraClasses]}
+  >
+    <slot />
+  </div>
+</div>
+
+<style define:vars={{ imgSrc, height, width }}>
+  .container {
+    background-size: cover;
+    background-image: var(--imgSrc);
+    height: calc(var(--height) * 1px);
+    width: calc(var(--width) * 1px);
+  }
+</style>
