@@ -1,10 +1,20 @@
 ---
+interface Props {
+  items: Item[]
+}
+
+interface Item {
+  title?: string
+  text: string
+  active?: boolean
+}
+
 const { items } = Astro.props
 ---
 
 <ul class='linked-list'>
   {
-    items.map((item: any) => {
+    items.map((item) => {
       return (
         <li class:list={['pb-8', item.active ? 'active' : '']}>
           {item.title && (
@@ -17,6 +27,7 @@ const { items } = Astro.props
   }
 </ul>
 
+<!-- TODO: Consider to move these styles to tailwind -->
 <style>
   .linked-list {
     list-style: none;

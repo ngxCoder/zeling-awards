@@ -1,25 +1,28 @@
 ---
-const {
-  bgImage: { height, width, src },
-  extraClasses
-} = Astro.props
+interface Props {
+  bgImage: { height: number; width: number; src: string }
+  extraClasses: string
+}
+const { bgImage, extraClasses } = Astro.props
 
-const imgSrc = `url(${src})`
+const bgImageSrc = `url(${bgImage.src})`
+const bgImageWidth = bgImage.width
+const bgImageHeight = bgImage.height
 ---
 
-<div class='bg-gray-900 text-white'>
-  <div
-    class:list={['container mx-auto flex flex-col px-4 py-12', extraClasses]}
-  >
-    <slot />
-  </div>
+<div
+  class:list={[
+    'custom-bg-image mx-auto flex flex-col bg-gray-900 bg-cover px-4 py-12 text-white',
+    extraClasses
+  ]}
+>
+  <slot />
 </div>
-
-<style define:vars={{ imgSrc, height, width }}>
-  .container {
-    background-size: cover;
-    background-image: var(--imgSrc);
-    height: calc(var(--height) * 1px);
-    width: calc(var(--width) * 1px);
+<!-- TODO: Consider to move these styles to tailwind -->
+<style define:vars={{ bgImageSrc, bgImageHeight, bgImageWidth }}>
+  .custom-bg-image {
+    background-image: var(--bgImageSrc);
+    height: calc(var(--bgImageHeight) * 1px);
+    width: calc(var(--bgImageWidth) * 1px);
   }
 </style>
