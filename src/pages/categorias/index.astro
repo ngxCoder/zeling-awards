@@ -1,14 +1,14 @@
 ---
-import BaseLayout from '../../layouts/Layout.astro'
+import Layout from '../../layouts/Layout.astro'
 
 import LinkNamed from '../../components/LinkNamed.astro'
 
-import Categories from '../../enums/categories'
+import Categories from '../../data/testing/categories'
 
 const pageTitle = 'Categorias'
 ---
 
-<BaseLayout title={pageTitle} description='Categorias'>
+<Layout title={pageTitle} description='Categorias'>
   <div class='h-50 m-2 flex flex-row flex-wrap bg-red-500'>
     {
       Categories.map((cat) => (
@@ -16,4 +16,4 @@ const pageTitle = 'Categorias'
       ))
     }
   </div>
-</BaseLayout>
+</Layout>

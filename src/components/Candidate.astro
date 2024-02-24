@@ -1,40 +1,20 @@
 ---
-const colors = {
-  bg: 'bg-[#ffb8cf80]',
-  bgSelection: 'bg-[#f967679f]',
-  ringSelection: 'has-[:checked]:border-carnation-500',
-  textSelection: 'text-white',
-  playButton: 'bg-glacier',
-  playButtonHover: 'hover:bg-dandelion'
-}
-
 const { category, image, title, href, id } = Astro.props
 ---
 
-<style>
-  .labl {
-    display: block;
-  }
-  .labl > input {
-    /* OCULTAR RADIO/CHECKBOX */
-    visibility: hidden;
-    position: absolute;
-  }
-</style>
-
 <label
-  class=`labl border-2 border-transparent p-1
+  class=`border-[3px] border-transparent p-1
   transition-all ease-in-out
   hover:cursor-pointer
-  has-[:checked]:border-2 ${colors.ringSelection}
+  has-[:checked]:border-[3px] has-[:checked]:border-carnation-500
   has-[:checked]:transition-all
   [&>div>.title]:has-[:checked]:flex
-  [&>div>img]:has-[:checked]:blur-[2px]`
+  [&>div>img]:has-[:checked]:blur-[2px] block`
 >
-  <input type='checkbox' name={category} value={id} />
+  <input class='absolute hidden' type='checkbox' name={category} value={id} />
   <div
     class=`flex h-[13.5rem] w-[24rem] justify-center
-    ${colors.bg} align-middle`
+    bg-[#ffb8cf80] align-middle`
   >
     <!-- IMAGEN -->
     <img
@@ -44,13 +24,13 @@ const { category, image, title, href, id } = Astro.props
     <!-- OVERLAY DE SELECCION -->
     <div
       class=`title absolute hidden h-[13.5rem] w-[24rem] flex-wrap
-        items-center justify-center ${colors.bgSelection}`
+        items-center justify-center bg-[#f967679f]`
     >
       <!-- NOMBRE DEL CLIP/NOMINADO -->
       <h1
         class=`m-0
           truncate text-wrap p-2 text-3xl font-semibold
-          ${colors.textSelection} transition-all ease-in-out`
+          text-white transition-all ease-in-out`
       >
         {title}
       </h1>
@@ -64,7 +44,7 @@ const { category, image, title, href, id } = Astro.props
     >
       <svg
         class={`absolute m-1 h-5 w-5 rounded-full p-1
-        ${colors.playButton} ${colors.playButtonHover}`}
+        bg-glacier hover:bg-dandelion`}
         viewBox='0 0 98.883118 98.883118'
         version='1.1'
         id='svg5'
