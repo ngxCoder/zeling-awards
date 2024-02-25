@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+import LinkCategory from '../../components/LinkCategory.astro'
+
+import Categories from '../../data/testing/categories'
+import Categoria from './[categoria].astro'
+
+const pageTitle = 'Categorias'
+---
+
+<Layout
+  title={pageTitle}
+  description='Categorias'
+  background='bg-gradient-to-r from-[#05303A] to-black-pearl'
+  headerColor_bg='bg-transparent'
+  headerColor_text='text-cotton-candy'
+>
+  <div class='grid items-center justify-center gap-y-28'>
+    <!-- TITULO DE CATEGORIA -->
+    <div class='flex justify-center'>
+      <h1 class=`text-[4rem] font-semibold text-cotton-candy tracking-wide`>
+        Categorias
+      </h1>
+    </div>
+  </div>
+  <div class='h-50 mt-15 flex flex-wrap justify-center gap-4 p-10'>
+    {
+      Categories.map((cat) => (
+        <LinkCategory title={cat} href={`/categorias/${cat}`} />
+      ))
+    }
+  </div>
+</Layout>

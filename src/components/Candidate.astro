@@ -1,0 +1,66 @@
+---
+const { category, image, title, href, id } = Astro.props
+---
+
+<label
+  class=`border-[3px] border-transparent p-1
+  transition-all ease-in-out
+  hover:cursor-pointer
+  has-[:checked]:border-[3px] has-[:checked]:border-carnation-500
+  has-[:checked]:transition-all
+  [&>div>.title]:has-[:checked]:flex
+  [&>div>img]:has-[:checked]:blur-[2px] block`
+>
+  <input class='absolute hidden' type='checkbox' name={category} value={id} />
+  <div
+    class=`flex h-[13.5rem] w-[24rem] justify-center
+    bg-[#ffb8cf80] align-middle`
+  >
+    <!-- IMAGEN -->
+    <img
+      class='m-auto max-h-[13.5rem] scale-x-[0.995] scale-y-[0.99]'
+      src={image}
+    />
+    <!-- OVERLAY DE SELECCION -->
+    <div
+      class=`title absolute hidden h-[13.5rem] w-[24rem] flex-wrap
+        items-center justify-center bg-[#f967679f]`
+    >
+      <!-- NOMBRE DEL CLIP/NOMINADO -->
+      <h1
+        class=`m-0
+          truncate text-wrap p-2 text-3xl font-semibold
+          text-white transition-all ease-in-out`
+      >
+        {title}
+      </h1>
+    </div>
+    <!-- LINK A CLIP/VIDEO -->
+    <a
+      href={href}
+      class='flex justify-end'
+      target='_blank'
+      rel='noopener noreferrer'
+    >
+      <!-- TODO: Move this to component -->
+      <svg
+        class={`absolute m-1 h-5 w-5 rounded-full p-1
+        bg-glacier hover:bg-dandelion`}
+        viewBox='0 0 98.883118 98.883118'
+        version='1.1'
+        id='svg5'
+        xmlns='http://www.w3.org/2000/svg'
+      >
+        <defs id='defs2'></defs>
+        <g id='layer1' transform='translate(-39.438469,-68.032364)'>
+          <path
+            style='fill:rgb(var(--violeta);fill-rule:evenodd;stroke-width:0.600001;stroke-miterlimit:10;stop-color:#000000'
+            id='path348'
+            d='m 112.55844,98.532469 c -0.2733,4.737271 -80.819043,45.244271 -84.784988,42.638951 -3.965946,-2.60533 1.226833,-92.613486 5.466082,-94.745433 4.23925,-2.131948 79.592216,47.369211 79.318906,52.106482 z'
+            transform='matrix(0.58933077,-0.0325919,0.03588937,0.53518383,50.314469,68.83835)'
+          ></path>
+        </g>
+      </svg>
+    </a>
+  </div>
+</label>

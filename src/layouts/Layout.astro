@@ -4,9 +4,18 @@ import Header from '../components/Header.astro'
 interface Props {
   title: string
   description: string
+  background?: string
+  headerColor_bg?: string
+  headerColor_text?: string
 }
 
-const { title, description } = Astro.props
+const {
+  title,
+  description,
+  background = 'bg-black-pearl',
+  headerColor_bg = 'bg-cotton-candy',
+  headerColor_text = 'text-black'
+} = Astro.props
 ---
 
 <!doctype html>
@@ -19,8 +28,8 @@ const { title, description } = Astro.props
     <meta name='generator' content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class='h-screen bg-black-pearl text-black-pearl'>
-    <Header />
+  <body class=`h-screen ${background} text-black-pearl`>
+    <Header Color_bg={headerColor_bg} Color_text={headerColor_text} />
     <slot />
   </body>
 </html>
