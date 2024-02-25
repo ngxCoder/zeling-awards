@@ -7,6 +7,7 @@ interface Props {
   background?: string
   headerColor_bg?: string
   headerColor_text?: string
+  showSocials?: boolean
 }
 
 const {
@@ -14,7 +15,8 @@ const {
   description,
   background = 'bg-black-pearl',
   headerColor_bg = 'bg-cotton-candy',
-  headerColor_text = 'text-black'
+  headerColor_text = 'text-black',
+  showSocials
 } = Astro.props
 ---
 
@@ -29,7 +31,11 @@ const {
     <title>{title}</title>
   </head>
   <body class=`h-screen ${background} text-black-pearl`>
-    <Header Color_bg={headerColor_bg} Color_text={headerColor_text} />
+    <Header
+      Color_bg={headerColor_bg}
+      Color_text={headerColor_text}
+      showSocials={showSocials}
+    />
     <slot />
   </body>
 </html>
