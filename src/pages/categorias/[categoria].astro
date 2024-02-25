@@ -10,6 +10,7 @@ import Candidates from '../../data/testing/candidates'
 export async function getStaticPaths() {
   let m_prev
   let m_next
+
   return Categories.map((categoria) => {
     m_prev = Categories[Categories.indexOf(categoria) - 1]
     m_next = Categories[Categories.indexOf(categoria) + 1]
@@ -19,6 +20,7 @@ export async function getStaticPaths() {
     if (Categories.indexOf(categoria) == Categories.length - 1) {
       m_next = './'
     }
+
     return {
       params: { categoria },
       props: {
@@ -57,7 +59,7 @@ const span_format = `hidden lg:block bg-cotton-candy self-end mb-[11px] h-[4px]`
   <div
     class="absolute bg-[url('../../assets/Prayge.svg')] bg-[_80%_80%] bg-bottom bg-no-repeat"
   >
-    <div class='gap-y-18 mt-20 grid items-center justify-center'>
+    <div class='gap-y-18 grid items-center justify-center'>
       <!-- TITULO DE CATEGORIA -->
       <div class='flex justify-center'>
         <div class='grid-cols-[1fr_auto_1fr] lg:grid 2xl:w-[40%]'>
