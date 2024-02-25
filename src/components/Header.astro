@@ -1,6 +1,7 @@
 ---
 import Button from './Button.astro'
 import Colors from './../enums/colors'
+import Discord from './icons/Discord.astro'
 
 interface Props {
   Color_bg: string
@@ -19,6 +20,9 @@ const { Color_bg, Color_text } = Astro.props
   </nav>
   <div class='flex-grow'></div>
   <Button color={Colors.BlackPearl} variant={'outline'} size={'md'}>
-    Discord
+    <div class='flex'>
+      <Discord class='mr-2 size-10' />
+      <span>Discord</span>
+    </div>
   </Button>
 </header>
