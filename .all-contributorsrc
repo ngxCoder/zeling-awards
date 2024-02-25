@@ -1,6 +1,6 @@
 {
   "projectName": "zeling-awards",
-  "projectOwner": "zeling-awards",
+  "projectOwner": "ngxCoder",
   "repoType": "github",
   "repoHost": "https://github.com",
   "imageSize": 64,
@@ -23,6 +23,19 @@
         "ideas",
         "projectManagement",
         "research"
+      ]
+    },
+    {
+      "login": "rodrigobosarreyes",
+      "name": "Rodrigo Bosarreyes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50107962?v=4",
+      "profile": "https://github.com/rodrigobosarreyes",
+      "contributions": [
+        "code",
+        "design",
+        "ideas",
+        "projectManagement",
+        "review"
       ]
     }
   ]
