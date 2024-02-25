@@ -1,0 +1,68 @@
+---
+interface Props {
+  items: Item[]
+}
+
+interface Item {
+  title?: string
+  text: string
+  active?: boolean
+}
+
+const { items } = Astro.props
+---
+
+<ul class='linked-list'>
+  {
+    items.map((item) => {
+      return (
+        <li class:list={['pb-8', item.active ? 'active' : '']}>
+          {item.title && (
+            <p class='font-bold text-cotton-candy'>{item.title}</p>
+          )}
+          <p>{item.text}</p>
+        </li>
+      )
+    })
+  }
+</ul>
+
+<!-- TODO: Consider to move these styles to tailwind or isolate it -->
+<style>
+  .linked-list {
+    list-style: none;
+    padding: 0;
+    position: relative;
+  }
+  .linked-list li {
+    padding-right: 20px;
+    position: relative;
+  }
+  .linked-list li:before {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 12px;
+    height: calc(100% + 10px);
+    border-left: 1px solid #f96767;
+  }
+  .linked-list li:after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 12px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #f96767;
+  }
+
+  .linked-list li.active:after {
+    border-radius: 0;
+    transform: rotate(45deg);
+  }
+
+  .linked-list li:last-child:before {
+    display: none;
+  }
+</style>

@@ -1,0 +1,42 @@
+---
+import Button from './Button.astro'
+import Colors from './../enums/colors'
+import Discord from './icons/Discord.astro'
+
+interface Props {
+  Color_bg: string
+  Color_text: string
+  showSocials?: boolean
+}
+
+const { Color_bg, Color_text, showSocials } = Astro.props
+---
+
+<header class=`flex flex-row items-center gap-7 p-5 text-2xl ${Color_bg}`>
+  <a href='/'>
+    <div class='h-10 w-10 rounded-full bg-white'></div>
+  </a>
+
+  <nav class=`flex items-center justify-center gap-7 ${Color_text}`>
+    <!-- <a href='#'>Vota</a> -->
+    <a href='/categorias'>Categorias</a>
+  </nav>
+  <div class='flex-grow'></div>
+  {
+    showSocials && (
+      <a
+        href='https://discordapp.com/invite/zeling
+  '
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        <Button color={Colors.BlackPearl} variant={'outline'} size={'md'}>
+          <div class='flex'>
+            <Discord class='mr-2 size-10' />
+            <span>Discord</span>
+          </div>
+        </Button>
+      </a>
+    )
+  }
+</header>

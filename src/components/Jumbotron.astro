@@ -1,0 +1,24 @@
+---
+interface Props {
+  bgImage: { height: number; width: number; src: string }
+  extraClasses: string
+}
+const { bgImage, extraClasses } = Astro.props
+
+const bgImageSrc = `url(${bgImage.src})`
+---
+
+<div
+  class:list={[
+    'custom-bg-image flex h-screen w-full flex-col bg-gray-900 bg-cover py-12 text-white',
+    extraClasses
+  ]}
+>
+  <slot />
+</div>
+<!-- TODO: Consider to move these styles to tailwind or isolate it -->
+<style define:vars={{ bgImageSrc }}>
+  .custom-bg-image {
+    background-image: var(--bgImageSrc);
+  }
+</style>
