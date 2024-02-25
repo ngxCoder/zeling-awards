@@ -1,6 +1,6 @@
 {
   "projectName": "zeling-awards",
-  "projectOwner": "zeling-awards",
+  "projectOwner": "ngxCoder",
   "repoType": "github",
   "repoHost": "https://github.com",
   "imageSize": 64,
@@ -23,6 +23,18 @@
         "ideas",
         "projectManagement",
         "research"
+      ]
+    },
+    {
+      "login": "TRPearson",
+      "name": "Choporro",
+      "avatar_url": "https://avatars.githubusercontent.com/u/59374993?v=4",
+      "profile": "https://github.com/TRPearson",
+      "contributions": [
+        "code",
+        "design",
+        "ideas",
+        "review"
       ]
     }
   ]
