@@ -36,6 +36,19 @@
         "ideas",
         "review"
       ]
+    },
+    {
+      "login": "rodrigobosarreyes",
+      "name": "Rodrigo Bosarreyes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50107962?v=4",
+      "profile": "https://github.com/rodrigobosarreyes",
+      "contributions": [
+        "code",
+        "design",
+        "ideas",
+        "projectManagement",
+        "review"
+      ]
     }
   ]
 }
