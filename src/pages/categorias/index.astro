@@ -19,12 +19,16 @@ const pageTitle = 'Categorias'
   <div class='grid items-center justify-center gap-y-28'>
     <!-- TITULO DE CATEGORIA -->
     <div class='flex justify-center'>
-      <h1 class=`text-[4rem] font-semibold text-cotton-candy tracking-wide`>
+      <h1
+        class=`text-[4rem] font-semibold text-cotton-candy tracking-wide underline`
+      >
         Categorias
       </h1>
     </div>
   </div>
-  <div class='h-50 mt-15 flex flex-wrap justify-center gap-4 p-10'>
+  <div
+    class='h-50 mt-15 flex max-w-[1800px] flex-wrap justify-center gap-4 p-10'
+  >
     {
       Categories.map((cat) => (
         <LinkCategory title={cat} href={`/categorias/${cat}`} />
