@@ -12,8 +12,7 @@ interface Props {
 
 const { Color_bg, Color_text, showSocials } = Astro.props
 const session = await getSession(Astro.request)
-const isDev = import.meta.env.DEV
-const isProd = import.meta.env.PROD
+const showSignOut = import.meta.env.SHOW_SIGN_OUT
 ---
 
 <header class=`flex flex-row items-center gap-7 p-5 text-2xl ${Color_bg}`>
@@ -45,7 +44,7 @@ const isProd = import.meta.env.PROD
     session ? (
       <>
         <div class='pointer-events-none text-3xl'>{session.user?.name}</div>
-        {(isDev || isProd) && ( //TODO: remove isProd, just testing the first times
+        {showSignOut && (
           <Button
             id='logout'
             color={Colors.BlackPearl}
