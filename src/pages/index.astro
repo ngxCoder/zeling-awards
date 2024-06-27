@@ -1,4 +1,6 @@
 ---
+export const prerender = true
+
 import Button from '../components/Button.astro'
 import Card from '../components/Card.astro'
 import Colors from '../enums/colors'
@@ -54,8 +56,8 @@ const items = [
   </div>
   <Button
     color={Colors.CottonCandy}
-    variant={'solid'}
-    size={'xl'}
+    variant='solid'
+    size='xl'
     customClasses='mx-auto mt-14 block font-semibold opacity-100 shadow-[-10px_10px_black,-10px_10px_0_2px_rgb(148,189,202)] transition-all hover:-translate-x-5 hover:translate-y-2 hover:shadow-none hover:transition-all'
   >
     Vota aquí
@@ -91,7 +93,7 @@ const items = [
   <SectionContainer className='px-16 pb-24 pt-44' id='4'>
     <div class='flex gap-10'>
       {
-        categories.map((cat) => (
+        categories.map((_cat) => (
           <div class='grow'>
             <Card body='hello world' href='/' title='XD' />
           </div>

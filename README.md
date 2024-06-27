@@ -66,8 +66,8 @@ Sitio que recopila los votos de la comunidad para los mejores momentos de Zeling
 ## Tecnologías
 
 - Astro v4
-- Firebase
 - Tailwind CSS
+- Vercel
 
 ## 🚀 Estructura del Projecto
 
