@@ -2,6 +2,7 @@
 import Button from './Button.astro'
 import Colors from './../enums/colors'
 import Discord from './icons/Discord.astro'
+import { getSession } from 'auth-astro/server'
 
 interface Props {
   Color_bg: string
@@ -10,6 +11,9 @@ interface Props {
 }
 
 const { Color_bg, Color_text, showSocials } = Astro.props
+const session = await getSession(Astro.request)
+const isDev = import.meta.env.DEV
+const isProd = import.meta.env.PROD
 ---
 
 <header class=`flex flex-row items-center gap-7 p-5 text-2xl ${Color_bg}`>
@@ -24,19 +28,57 @@ const { Color_bg, Color_text, showSocials } = Astro.props
   <div class='flex-grow'></div>
   {
     showSocials && (
-      <a
-        href='https://discordapp.com/invite/zeling
-  '
-        target='_blank'
-        rel='noopener noreferrer'
+      <Button
+        id='discord'
+        color={Colors.BlackPearl}
+        variant='outline'
+        size='md'
       >
-        <Button color={Colors.BlackPearl} variant={'outline'} size={'md'}>
-          <div class='flex'>
-            <Discord class='mr-2 size-10' />
-            <span>Discord</span>
-          </div>
-        </Button>
-      </a>
+        <div class='flex'>
+          <Discord class='mr-2 size-9' />
+          <span>Discord</span>
+        </div>
+      </Button>
+    )
+  }
+  {
+    session ? (
+      <>
+        <div class='pointer-events-none text-3xl'>{session.user?.name}</div>
+        {(isDev || isProd) && ( //TODO: remove isProd, just testing the first times
+          <Button
+            id='logout'
+            color={Colors.BlackPearl}
+            variant='outline'
+            size='md'
+          >
+            <div class='flex'>
+              <span>Cerrar Sesión</span>
+            </div>
+          </Button>
+        )}
+      </>
+    ) : (
+      <Button id='login' color={Colors.BlackPearl} variant='outline' size='md'>
+        <div class='flex'>
+          <span>Iniciar Sesión</span>
+        </div>
+      </Button>
     )
   }
 </header>
+<script>
+  const discordButton = document.querySelector('#discord')
+  discordButton?.addEventListener('click', () => {
+    window.open('https://discordapp.com/invite/zeling', '_blank')
+  })
+</script>
+<script>
+  const { signIn, signOut } = await import('auth-astro/client')
+
+  const loginButton = document.querySelector('#login') as HTMLButtonElement
+  const logoutButton = document.querySelector('#logout') as HTMLButtonElement
+
+  loginButton && (loginButton.onclick = () => signIn('twitch'))
+  logoutButton && (logoutButton.onclick = () => signOut())
+</script>
