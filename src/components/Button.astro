@@ -2,6 +2,7 @@
 import Colors from '../enums/colors'
 
 interface Props {
+  id?: string
   variant?: 'solid' | 'outline'
   size?: 'xs' | 'md' | 'lg' | 'xl'
   color: Colors
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const {
+  id,
   variant = 'solid',
   size = 'md',
   color = Colors.BlackPearl,
@@ -118,6 +120,7 @@ switch (color) {
 ---
 
 <button
+  id={id}
   type='button'
   class={`${config.ringColor} ${config.bgColor} ${config.textColor} ${config.size} ${config.fontSize} ${customClasses}`}
 >
