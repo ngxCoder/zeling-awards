@@ -11,11 +11,8 @@ interface Props {
 }
 
 const { Color_bg, Color_text, showSocials } = Astro.props
+
 const session = await getSession(Astro.request)
-console.log(session)
-console.info(session)
-console.warn(session)
-console.error(session)
 const showSignOut = import.meta.env.SHOW_SIGN_OUT
 ---
 

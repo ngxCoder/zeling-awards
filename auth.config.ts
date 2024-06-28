@@ -7,5 +7,6 @@ export default defineConfig({
       clientId: import.meta.env.TWITCH_CLIENT_ID,
       clientSecret: import.meta.env.TWITCH_CLIENT_SECRET
     })
-  ]
+  ],
+  debug: true
 })
