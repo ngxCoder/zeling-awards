@@ -31,7 +31,7 @@ export async function getSession(
 
   const data = await response.json()
 
-  console.log(data, status)
+  console.debug(data, status)
 
   if (!data || !Object.keys(data).length) return null
   if (status === 200) return data
