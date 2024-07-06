@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { Color_bg, Color_text, showSocials } = Astro.props
-
+const user = Astro.locals.user
 const showSignOut = import.meta.env.SHOW_SIGN_OUT
 ---
 
@@ -40,9 +40,9 @@ const showSignOut = import.meta.env.SHOW_SIGN_OUT
     )
   }
   {
-    session ? (
+    user ? (
       <>
-        <div class='pointer-events-none text-3xl'>{session.user?.name}</div>
+        <div class='pointer-events-none text-3xl'>{user.username}</div>
         {showSignOut && (
           <Button
             id='logout'
@@ -54,6 +54,7 @@ const showSignOut = import.meta.env.SHOW_SIGN_OUT
               <span>Cerrar Sesión</span>
             </div>
           </Button>
+          <form id="logoutForm" method="post" action="/api/logout"></form>
         )}
       </>
     ) : (
@@ -72,11 +73,15 @@ const showSignOut = import.meta.env.SHOW_SIGN_OUT
   })
 </script>
 <script>
-  const { signIn, signOut } = await import('auth-astro/client')
-
   const loginButton = document.querySelector('#login') as HTMLButtonElement
   const logoutButton = document.querySelector('#logout') as HTMLButtonElement
+  const logoutForm = document.querySelector('#logoutForm') as HTMLFormElement
 
-  loginButton && (loginButton.onclick = () => signIn('twitch'))
-  logoutButton && (logoutButton.onclick = () => signOut())
+  loginButton?.addEventListener('click', () => {
+    window.open('/login/twitch', '_self')
+  })
+
+  logoutButton?.addEventListener('click', () => {
+    logoutForm?.submit()
+  })
 </script>
