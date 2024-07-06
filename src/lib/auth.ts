@@ -1,4 +1,4 @@
-import { Lucia } from 'lucia'
+import { Lucia, TimeSpan } from 'lucia'
 import { NodePostgresAdapter } from '@lucia-auth/adapter-postgresql'
 import { db } from './db'
 import { Twitch } from 'arctic'
@@ -9,6 +9,7 @@ const adapter = new NodePostgresAdapter(db, {
 })
 
 export const lucia = new Lucia(adapter, {
+  sessionExpiresIn: new TimeSpan(30, 'd'),
   sessionCookie: {
     attributes: {
       // set to `true` when using HTTPS
