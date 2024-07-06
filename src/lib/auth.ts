@@ -12,7 +12,7 @@ export const lucia = new Lucia(adapter, {
   sessionCookie: {
     attributes: {
       // set to `true` when using HTTPS
-      secure: false //import.meta.env.PROD
+      secure: import.meta.env.PROD
     }
   },
   getUserAttributes: (attributes) => {

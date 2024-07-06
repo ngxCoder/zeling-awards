@@ -11,8 +11,8 @@ export async function GET(context: APIContext): Promise<Response> {
 
   context.cookies.set('twitch_oauth_state', state, {
     path: '/',
-    secure: false, //import.meta.env.PROD,
-    httpOnly: true,
+    secure: import.meta.env.PROD,
+    httpOnly: false,
     maxAge: 60 * 10,
     sameSite: 'lax'
   })
