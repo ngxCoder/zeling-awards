@@ -1,8 +1,6 @@
 import { lucia } from '../../lib/auth'
 import type { APIContext } from 'astro'
 
-export const prerender = true
-
 export async function POST(context: APIContext): Promise<Response> {
   if (!context.locals.session) {
     return new Response(null, {

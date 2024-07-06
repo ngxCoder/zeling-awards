@@ -2,8 +2,6 @@ import { generateState } from 'arctic'
 import { twitch } from '../../../lib/auth'
 import type { APIContext } from 'astro'
 
-export const prerender = true
-
 export async function GET(context: APIContext): Promise<Response> {
   const state = generateState()
   const url = await twitch.createAuthorizationURL(state, {
