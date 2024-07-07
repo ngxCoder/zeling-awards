@@ -10,7 +10,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   console.log('[middleware] requestCookies:', requestCookies)
 
   const sessionId = context.cookies.get(lucia.sessionCookieName)?.value ?? null
-  context.locals.variable = requestCookies
+  context.locals.variable = astroCookies ?? null
   if (!sessionId) {
     context.locals.user = null
     context.locals.session = null
