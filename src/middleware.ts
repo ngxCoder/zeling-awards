@@ -4,7 +4,7 @@ import { defineMiddleware } from 'astro:middleware'
 export const prerender = false
 
 export const onRequest = defineMiddleware(async (context, next) => {
-  const astroCookies = context.cookies
+  const astroCookies = context.cookies.get(lucia.sessionCookieName)?.value
   const requestCookies = context.request.headers.get('cookie')
   console.log('[middleware] astroCookies:', astroCookies)
   console.log('[middleware] requestCookies:', requestCookies)
