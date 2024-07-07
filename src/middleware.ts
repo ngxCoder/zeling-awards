@@ -8,7 +8,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   console.log('[middleware] requestCookies:', requestCookies)
 
   const sessionId = context.cookies.get(lucia.sessionCookieName)?.value ?? null
-  const fromHeader = context.request.headers.get('cookie') ?? null
+  const fromHeader = JSON.stringify(context.request.headers) ?? null
   context.locals.variable = `${lucia.sessionCookieName}: ${fromHeader}`
   if (!sessionId) {
     context.locals.user = null
