@@ -6,7 +6,9 @@ import tailwind from '@astrojs/tailwind'
 export default defineConfig({
   integrations: [tailwind()],
   output: 'hybrid',
-  adapter: vercel(),
+  adapter: vercel({
+    functionPerRoute: true
+  }),
   security: {
     checkOrigin: true
   }
