@@ -12,6 +12,8 @@ interface Props {
 const { Color_bg, Color_text, showSocials } = Astro.props
 const user = Astro.locals.user
 const showSignOut = import.meta.env.SHOW_SIGN_OUT
+console.log('variable ' + Astro.locals.variable)
+const variable = Astro.locals.variable
 ---
 
 <header class=`flex flex-row items-center gap-7 p-5 text-2xl ${Color_bg}`>
@@ -23,6 +25,7 @@ const showSignOut = import.meta.env.SHOW_SIGN_OUT
     <!-- <a href='#'>Vota</a> -->
     <a href='/categorias'>Categorias</a>
   </nav>
+  <p>variable: {variable}</p>
   <div class='flex-grow'></div>
   {
     showSocials && (
