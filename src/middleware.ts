@@ -1,6 +1,8 @@
 import { lucia } from './lib/auth'
 import { defineMiddleware } from 'astro:middleware'
 
+export const prerender = false
+
 export const onRequest = defineMiddleware(async (context, next) => {
   const astroCookies = context.cookies
   const requestCookies = context.request.headers.get('cookie')
