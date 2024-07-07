@@ -9,7 +9,6 @@ const adapter = new NodePostgresAdapter(db, {
 })
 
 export const lucia = new Lucia(adapter, {
-  sessionExpiresIn: new TimeSpan(30, 'd'),
   sessionCookie: {
     attributes: {
       // set to `true` when using HTTPS
