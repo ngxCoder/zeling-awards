@@ -2,8 +2,8 @@ import { lucia } from './lib/auth'
 import { defineMiddleware } from 'astro:middleware'
 
 export const onRequest = defineMiddleware(async (context, next) => {
-  context.locals.variable = 'hello vengo del middleware'
   const sessionId = context.cookies.get(lucia.sessionCookieName)?.value ?? null
+  context.locals.variable = sessionId
   if (!sessionId) {
     context.locals.user = null
     context.locals.session = null
