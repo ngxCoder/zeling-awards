@@ -1,4 +1,4 @@
-import { Lucia, TimeSpan } from 'lucia'
+import { Lucia } from 'lucia'
 import { NodePostgresAdapter } from '@lucia-auth/adapter-postgresql'
 import { db } from './db'
 import { Twitch } from 'arctic'

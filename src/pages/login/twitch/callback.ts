@@ -4,6 +4,8 @@ import { generateIdFromEntropySize } from 'lucia'
 import type { APIContext } from 'astro'
 import { db } from '../../../lib/db'
 
+export const prerender = false
+
 export async function GET(context: APIContext): Promise<Response> {
   const code = context.url.searchParams.get('code')
   const state = context.url.searchParams.get('state')
