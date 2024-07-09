@@ -1,0 +1,36 @@
+---
+interface Props {
+  direction?: 'up' | 'down' | 'right' | 'left'
+}
+
+const { direction = 'left' } = Astro.props
+
+const config = {
+  dir: ''
+}
+
+switch (direction) {
+  case 'up':
+    config.dir = 'rotate-90'
+    break
+
+  case 'down':
+    config.dir = 'rotate-270'
+    break
+
+  case 'right':
+    config.dir = 'rotate-180'
+    break
+}
+---
+
+<svg
+  xmlns='http://www.w3.org/2000/svg'
+  viewBox='0 0 24 24'
+  class=`${config.dir}`
+>
+  <path
+    d='M19 12a1 1 0 0 1-1 1H8.414l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 1.414L8.414 11H18a1 1 0 0 1 1 1z'
+    style='fill:#ffd863'
+    data-name='Left'></path>
+</svg>

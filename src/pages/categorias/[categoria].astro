@@ -1,6 +1,7 @@
 ---
 import Candidate from '../../components/Candidate.astro'
 import Layout from '../../layouts/Layout.astro'
+import Arrow from '../../components/icons/Arrow.astro'
 
 // IMPORTAR LISTAS DE PRUEBA
 import Categories from '../../data/testing/categories'
@@ -45,7 +46,7 @@ const next = Astro.props.m_next
 
 //FORMATO DE TITULO
 
-const span_format = `hidden lg:block bg-cotton-candy self-end mb-[11px] h-[4px]`
+const span_format = `hidden lg:block bg-cotton-candy self-end mb-[12px] h-[4px]`
 ---
 
 <Layout
@@ -57,9 +58,14 @@ const span_format = `hidden lg:block bg-cotton-candy self-end mb-[11px] h-[4px]`
 >
   <!-- Peepo background -->
   <div
-    class="absolute bg-[url('../../assets/Prayge.svg')] bg-[_80%_80%] bg-bottom bg-no-repeat"
+    class="flex min-h-[90svh] bg-[url('/Prayge.svg')] bg-[_80%_80%] bg-bottom bg-no-repeat"
   >
-    <div class='gap-y-18 grid items-center justify-center'>
+    <!-- FORMULARIO DE VOTACION -->
+    <form
+      class='flex w-screen flex-1 flex-col justify-around [&>div>button]:has-[:checked]:bg-gradient-to-tr'
+      action='#'
+      method='#'
+    >
       <!-- TITULO DE CATEGORIA -->
       <div class='flex justify-center'>
         <div class='grid-cols-[1fr_auto_1fr] lg:grid 2xl:w-[40%]'>
@@ -72,85 +78,145 @@ const span_format = `hidden lg:block bg-cotton-candy self-end mb-[11px] h-[4px]`
           <span class=`${span_format}`></span>
         </div>
       </div>
-      <!-- FORMULARIO DE VOTACION -->
-      <form
-        class='flex w-screen flex-col gap-8 min-[1569px]:mt-20 min-[1569px]:gap-48 [&>div>button]:has-[:checked]:bg-gradient-to-tr'
-        action='#'
-        method='#'
-      >
-        <!-- CANDIDATOS -->
-        <div class='flex flex-wrap justify-center gap-2 self-center'>
-          <div class='flex flex-wrap justify-center gap-2 self-center'>
-            <Candidate
-              categoria={title}
-              title={candidate1.nominado}
-              image={candidate1.img}
-              href={candidate1.url}
-              id='1'
-            />
-            <Candidate
-              categoria={title}
-              title={candidate2.nominado}
-              image={candidate2.img}
-              href={candidate2.url}
-              id='2'
-            />
-          </div>
-          <div class='flex flex-wrap justify-center gap-2 self-center'>
-            <Candidate
-              categoria={title}
-              title={candidate3.nominado}
-              image={candidate3.img}
-              href={candidate3.url}
-              id='3'
-            />
-            <Candidate
-              categoria={title}
-              title={candidate4.nominado}
-              image={candidate4.img}
-              href={candidate4.url}
-              id='4'
-            />
-          </div>
-        </div>
-
-        <!-- BOTONES DE NAVEGACION Y CONFIRMACION -->
-        <div class='flex justify-between sm:px-28'>
-          <!-- BOTON PREV -->
-          <a href={prev} class=`px-5 text-[1.75rem] text-glacier-100`
-            ><div
-              class="h-16 w-20
-          bg-[url('../../assets/arrow.svg')] bg-no-repeat"
-            >
-            </div>
-            Prev
-          </a>
-          <!-- BOTON VOTAR -->
-          <button
-            type='button'
-            value='Votar'
-            class=`cursor-pointer bg-cotton-candy
-        from-cotton-candy to-cotton-candy-400 px-16 max-h-16 font-bold tracking-wide
-        shadow-[-10px_10px_black,-10px_10px_0_2px_rgb(255,184,208)]
-      
-        transition-all hover:-translate-x-5 hover:translate-y-2
-        hover:shadow-none hover:transition-all text-[2rem]`
-            >Votar</button
+      <!-- CANDIDATOS -->
+      <div class='flex flex-wrap justify-center'>
+        <div class='flex flex-wrap justify-center'>
+          <label
+            class=`border-[3px] border-transparent m-5
+                has-[:checked]:border-carnation-500
+                [&>div>.title]:has-[:checked]:flex
+                [&>div>img]:has-[:checked]:blur-[2px]`
           >
-          <!-- BOTON SIG -->
-          <a
-            href={next}
-            class=`px-5 text-[1.75rem] text-glacier-100
-      text-center`
-            ><div
-              class="h-16 w-20 rotate-180
-        bg-[url('../../assets/arrow.svg')] bg-no-repeat"
+            <div
+              class=`m-3 flex h-[13.5rem] w-[24rem]
+                  bg-[#ffb8cf80] hover:cursor-pointer`
             >
+              <input
+                class='absolute h-0 w-0 opacity-0'
+                type='radio'
+                name={title}
+                value='1'
+              />
+              <Candidate
+                categoria={title}
+                title={candidate1.nominado}
+                image={candidate1.img}
+                href={candidate1.url}
+                id='1'
+              />
             </div>
-            Sig
-          </a>
+          </label>
+          <label
+            class=`border-[3px] border-transparent m-5
+                has-[:checked]:border-carnation-500
+                [&>div>.title]:has-[:checked]:flex
+                [&>div>img]:has-[:checked]:blur-[2px]`
+          >
+            <div
+              class=`m-3 flex h-[13.5rem] w-[24rem]
+                  bg-[#ffb8cf80] hover:cursor-pointer`
+            >
+              <input
+                class='absolute h-0 w-0 opacity-0'
+                type='radio'
+                name={title}
+                value='2'
+              />
+              <Candidate
+                categoria={title}
+                title={candidate2.nominado}
+                image={candidate2.img}
+                href={candidate2.url}
+                id='2'
+              />
+            </div>
+          </label>
         </div>
-      </form>
-    </div>
+        <div class='flex flex-wrap justify-center'>
+          <label
+            class=`border-[3px] border-transparent m-5
+                has-[:checked]:border-carnation-500
+                [&>div>.title]:has-[:checked]:flex
+                [&>div>img]:has-[:checked]:blur-[2px]`
+          >
+            <div
+              class=`m-3 flex h-[13.5rem] w-[24rem]
+                  bg-[#ffb8cf80] hover:cursor-pointer`
+            >
+              <input
+                class='absolute h-0 w-0 opacity-0'
+                type='radio'
+                name={title}
+                value='3'
+              />
+              <Candidate
+                categoria={title}
+                title={candidate3.nominado}
+                image={candidate3.img}
+                href={candidate3.url}
+                id='3'
+              />
+            </div>
+          </label>
+          <label
+            class=`border-[3px] border-transparent m-5
+                has-[:checked]:border-carnation-500
+                [&>div>.title]:has-[:checked]:flex
+                [&>div>img]:has-[:checked]:blur-[2px]`
+          >
+            <div
+              class=`m-3 flex h-[13.5rem] w-[24rem]
+                  bg-[#ffb8cf80] hover:cursor-pointer`
+            >
+              <input
+                class='absolute h-0 w-0 opacity-0'
+                type='radio'
+                name={title}
+                value='4'
+              />
+              <Candidate
+                categoria={title}
+                title={candidate4.nominado}
+                image={candidate4.img}
+                href={candidate4.url}
+                id='4'
+              />
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- BOTONES DE NAVEGACION Y CONFIRMACION -->
+      <div class='flex justify-between sm:px-28'>
+        <!-- BOTON PREV -->
+        <a href={prev} class=`px-5 text-[1.75rem] text-glacier-100`
+          ><div class='w-14'>
+            <Arrow />
+          </div>
+          Prev
+        </a>
+        <!-- BOTON VOTAR -->
+        <button
+          type='button'
+          value='Votar'
+          class=`cursor-pointer bg-cotton-candy
+              from-cotton-candy to-cotton-candy-400 px-16 max-h-16 font-bold tracking-wide
+              shadow-[-10px_10px_black,-10px_10px_0_2px_rgb(255,184,208)]
+              transition-all hover:-translate-x-5 hover:translate-y-2
+              hover:shadow-none hover:transition-all text-[2rem]`
+          >Votar</button
+        >
+        <!-- BOTON SIG -->
+        <a
+          href={next}
+          class=`px-5 text-[1.75rem] text-glacier-100
+              text-center`
+          ><div class='w-14'>
+            <Arrow direction='right' />
+            Sig
+          </div>
+        </a>
+      </div>
+    </form>
   </div>
 </Layout>
