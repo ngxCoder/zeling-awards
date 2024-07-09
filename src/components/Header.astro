@@ -10,6 +10,8 @@ interface Props {
 }
 
 const { Color_bg, Color_text, showSocials } = Astro.props
+const user = Astro.locals.user
+const showSignOut = import.meta.env.SHOW_SIGN_OUT
 ---
 
 <header class=`flex flex-row items-center gap-7 p-5 text-2xl ${Color_bg}`>
@@ -20,28 +22,71 @@ const { Color_bg, Color_text, showSocials } = Astro.props
       >
       </div>
     </div>
+  </a>
 
-    <nav class=`flex items-center justify-center gap-7 ${Color_text}`>
-      <!-- <a href='#'>Vota</a> -->
-      <a href='/categorias'>Categorias</a>
-    </nav>
-    <div class='flex-grow'></div>
-    {
-      showSocials && (
-        <a
-          href='https://discordapp.com/invite/zeling
-  '
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <Button color={Colors.BlackPearl} variant={'outline'} size={'md'}>
+  <nav class=`flex items-center justify-center gap-7 ${Color_text}`>
+    <!-- <a href='#'>Vota</a> -->
+    <a href='/categorias'>Categorias</a>
+  </nav>
+  <div class='flex-grow'></div>
+  {
+    showSocials && (
+      <Button
+        id='discord'
+        color={Colors.BlackPearl}
+        variant='outline'
+        size='md'
+      >
+        <div class='flex'>
+          <Discord class='mr-2 size-9' />
+          <span>Discord</span>
+        </div>
+      </Button>
+    )
+  }
+  {
+    user ? (
+      <>
+        <div class='pointer-events-none text-3xl'>{user.username}</div>
+        {showSignOut && (
+          <Button
+            id='logout'
+            color={Colors.BlackPearl}
+            variant='outline'
+            size='md'
+          >
             <div class='flex'>
-              <Discord class='mr-2 size-10' />
-              <span>Discord</span>
+              <span>Cerrar Sesión</span>
             </div>
           </Button>
-        </a>
-      )
-    }
-  </a>
+          <form id="logoutForm" method="post" action="/api/logout"></form>
+        )}
+      </>
+    ) : (
+      <Button id='login' color={Colors.BlackPearl} variant='outline' size='md'>
+        <div class='flex'>
+          <span>Iniciar Sesión</span>
+        </div>
+      </Button>
+    )
+  }
 </header>
+<script>
+  const discordButton = document.querySelector('#discord')
+  discordButton?.addEventListener('click', () => {
+    window.open('https://discordapp.com/invite/zeling', '_blank')
+  })
+</script>
+<script>
+  const loginButton = document.querySelector('#login') as HTMLButtonElement
+  const logoutButton = document.querySelector('#logout') as HTMLButtonElement
+  const logoutForm = document.querySelector('#logoutForm') as HTMLFormElement
+
+  loginButton?.addEventListener('click', () => {
+    window.open('/login/twitch', '_self')
+  })
+
+  logoutButton?.addEventListener('click', () => {
+    logoutForm?.submit()
+  })
+</script>

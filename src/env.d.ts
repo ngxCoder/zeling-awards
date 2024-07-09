@@ -1,18 +1,22 @@
+/// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
 interface ImportMetaEnv {
-  readonly FIREBASE_PRIVATE_KEY_ID: string
-  readonly FIREBASE_PRIVATE_KEY: string
-  readonly FIREBASE_PROJECT_ID: string
-  readonly FIREBASE_CLIENT_EMAIL: string
-  readonly FIREBASE_CLIENT_ID: string
-  readonly FIREBASE_AUTH_URI: string
-  readonly FIREBASE_TOKEN_URI: string
-  readonly FIREBASE_AUTH_CERT_URL: string
-  readonly FIREBASE_CLIENT_CERT_URL: string
-  readonly FIREBASE_UNIVERSE_DOMAIN: string
+  readonly POSTGRES_URL: string
+  readonly TWITCH_CLIENT_ID: string
+  readonly TWITCH_CLIENT_SECRET: string
+  readonly TWITCH_REDIRECT_URI: string
+  readonly SHOW_SIGN_OUT: boolean
 }
 
 interface ImportMeta {
   readonly env: ImportMetaEnv
+}
+
+/// <reference types="astro/client" />
+declare namespace App {
+  interface Locals {
+    session: import('lucia').Session | null
+    user: import('lucia').User | null
+  }
 }
