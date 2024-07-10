@@ -3,18 +3,20 @@ import Button from './Button.astro'
 import Colors from './../enums/colors'
 import Discord from './icons/Discord.astro'
 
-interface Props {
-  Color_bg: string
-  Color_text: string
+export interface Props {
+  bgColor: string
+  textColor: string
   showSocials?: boolean
+  showLogin?: boolean
+  buttonsStyle: Colors 
 }
 
-const { Color_bg, Color_text, showSocials } = Astro.props
+const { bgColor, textColor, showSocials, showLogin, buttonsStyle } = Astro.props
 const user = Astro.locals.user
 const showSignOut = import.meta.env.SHOW_SIGN_OUT
 ---
 
-<header class=`flex flex-row items-center gap-7 p-5 text-2xl ${Color_bg}`>
+<header class=`flex flex-row items-center gap-7 p-5 text-2xl ${bgColor}`>
   <a href='/'>
     <div class='h-10 w-10 rounded-full bg-[radial-gradient(#000,#0000)]'>
       <div
@@ -24,7 +26,7 @@ const showSignOut = import.meta.env.SHOW_SIGN_OUT
     </div>
   </a>
 
-  <nav class=`flex items-center justify-center gap-7 ${Color_text}`>
+  <nav class=`flex items-center justify-center gap-7 ${textColor}`>
     <!-- <a href='#'>Vota</a> -->
     <a href='/categorias'>Categorias</a>
   </nav>
@@ -33,7 +35,7 @@ const showSignOut = import.meta.env.SHOW_SIGN_OUT
     showSocials && (
       <Button
         id='discord'
-        color={Colors.BlackPearl}
+        color={buttonsStyle}
         variant='outline'
         size='md'
       >
@@ -44,6 +46,9 @@ const showSignOut = import.meta.env.SHOW_SIGN_OUT
       </Button>
     )
   }
+
+  { showLogin &&
+  <>
   {
     user ? (
       <>
@@ -63,12 +68,14 @@ const showSignOut = import.meta.env.SHOW_SIGN_OUT
         )}
       </>
     ) : (
-      <Button id='login' color={Colors.BlackPearl} variant='outline' size='md'>
+      <Button id='login' color={buttonsStyle} variant='outline' size='md'>
         <div class='flex'>
           <span>Iniciar Sesión</span>
         </div>
       </Button>
     )
+  }
+  </>
   }
 </header>
 <script>

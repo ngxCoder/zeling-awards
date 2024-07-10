@@ -1,5 +1,5 @@
 ---
-export const prerender = false
+export const prerender = true
 
 import Button from '../components/Button.astro'
 import Card from '../components/Card.astro'
@@ -43,7 +43,16 @@ const items = [
 ]
 ---
 
-<Layout title='Sepe Awards' description='TBD' showSocials>
+<Layout
+  title='Sepe Awards'
+  description='TBD'
+  headerProps={{
+    bgColor: 'bg-cotton-candy',
+    textColor: 'text-black',
+    showSocials: true,
+    buttonsStyle: Colors.BlackPearl
+  }}
+>
   <div
     class='flex h-4/6 flex-col items-center bg-cotton-candy [clip-path:polygon(0%_0%,0%_83.34%,50%_100%,100%_83.34%,100%_0%)]'
   >

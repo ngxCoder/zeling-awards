@@ -1,22 +1,25 @@
 ---
-import Header from '../components/Header.astro'
+import Header, { type Props as HeaderProps } from '../components/Header.astro'
+import Colors from '../enums/colors'
 
 interface Props {
   title: string
   description: string
   background?: string
-  headerColor_bg?: string
-  headerColor_text?: string
-  showSocials?: boolean
+  headerProps: HeaderProps
 }
 
 const {
   title,
   description,
   background = 'bg-black-pearl',
-  headerColor_bg = 'bg-cotton-candy',
-  headerColor_text = 'text-black',
-  showSocials
+  headerProps = {
+    bgColor: 'bg-cotton-candy',
+    textColor: 'text-black',
+    showSocials: true,
+    showLogin: true,
+    buttonsStyle: Colors.BlackPearl
+  }
 } = Astro.props
 ---
 
@@ -31,11 +34,7 @@ const {
     <title>{title}</title>
   </head>
   <body class=`h-screen ${background} text-black-pearl`>
-    <Header
-      Color_bg={headerColor_bg}
-      Color_text={headerColor_text}
-      showSocials={showSocials}
-    />
+    <Header {...headerProps} />
     <slot />
   </body>
 </html>
