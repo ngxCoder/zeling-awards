@@ -6,7 +6,7 @@ interface ImportMetaEnv {
   readonly TWITCH_CLIENT_ID: string
   readonly TWITCH_CLIENT_SECRET: string
   readonly TWITCH_REDIRECT_URI: string
-  readonly SHOW_SIGN_OUT: boolean
+  readonly SHOW_SIGN_OUT: string
 }
 
 interface ImportMeta {

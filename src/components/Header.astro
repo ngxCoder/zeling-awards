@@ -13,7 +13,7 @@ export interface Props {
 
 const { bgColor, textColor, showSocials, showLogin, buttonsStyle } = Astro.props
 const user = Astro.locals.user
-const showSignOut = import.meta.env.SHOW_SIGN_OUT
+const showSignOut = import.meta.env.SHOW_SIGN_OUT === 'true'
 ---
 
 <header class=`flex flex-row items-center gap-7 p-5 text-2xl ${bgColor}`>
@@ -52,11 +52,15 @@ const showSignOut = import.meta.env.SHOW_SIGN_OUT
   {
     user ? (
       <>
-        <div class='pointer-events-none text-3xl'>{user.username}</div>
+
+        <div class={`flex flex-row items-center pointer-events-none ${textColor}`}>
+          <img src={user?.profileImageUrl} class="size-12 rounded-full"/> 
+          <span class='text-2xl ml-2'>{user.username}</span>
+        </div>
         {showSignOut && (
           <Button
             id='logout'
-            color={Colors.BlackPearl}
+            color={buttonsStyle}
             variant='outline'
             size='md'
           >
