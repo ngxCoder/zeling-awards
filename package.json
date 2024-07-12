@@ -10,7 +10,9 @@
     "astro": "astro",
     "lint": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\"",
     "migrate": "ts-node --project tsconfig.migrations.json node_modules/node-pg-migrate/bin/node-pg-migrate.js --envPath .env.local --database-url-var POSTGRES_URL",
-    "migrate:up": "npm run migrate up"
+    "migrate:create": "npm run migrate create",
+    "migrate:up": "npm run migrate up",
+    "migrate:down": "npm run migrate down"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.4",
