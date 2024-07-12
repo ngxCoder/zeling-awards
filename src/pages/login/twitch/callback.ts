@@ -36,7 +36,7 @@ export async function GET(context: APIContext): Promise<Response> {
     // Replace this with your own DB client.
 
     const { rows } =
-      await db.sql`SELECT * FROM auth_user WHERE twitch_id = ${twitchUser.id} LIMIT 1;`
+      await db.sql`SELECT * FROM users WHERE twitch_id = ${twitchUser.id} LIMIT 1;`
     const existingUser = rows.length > 0 ? rows[0] : null
 
     if (existingUser) {
@@ -52,7 +52,7 @@ export async function GET(context: APIContext): Promise<Response> {
 
     const userId = generateIdFromEntropySize(10) // 16 characters long
 
-    await db.sql`INSERT INTO auth_user (id, twitch_id, login, display_name, email, profile_image_url) VALUES (${userId}, ${twitchUser.id}, ${twitchUser.login}, ${twitchUser.display_name}, ${twitchUser.email}, ${twitchUser.profile_image_url});`
+    await db.sql`INSERT INTO users (id, twitch_id, login, display_name, email, profile_image_url) VALUES (${userId}, ${twitchUser.id}, ${twitchUser.login}, ${twitchUser.display_name}, ${twitchUser.email}, ${twitchUser.profile_image_url});`
 
     const session = await lucia.createSession(userId, {})
     const sessionCookie = lucia.createSessionCookie(session.id)

@@ -4,8 +4,8 @@ import { db } from './db'
 import { Twitch } from 'arctic'
 
 const adapter = new NodePostgresAdapter(db, {
-  user: 'auth_user',
-  session: 'user_session'
+  user: 'users',
+  session: 'sessions'
 })
 
 export const lucia = new Lucia(adapter, {
