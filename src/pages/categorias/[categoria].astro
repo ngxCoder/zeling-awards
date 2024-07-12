@@ -6,6 +6,7 @@ import Arrow from '../../components/icons/Arrow.astro'
 // IMPORTAR LISTAS DE PRUEBA
 import Categories from '../../data/testing/categories'
 import Candidates from '../../data/testing/candidates'
+import Colors from '../../enums/colors'
 
 // CARGA CANDIDATOS Y LINKS A CATEGORIAS PREV Y SIG
 export async function getStaticPaths() {
@@ -53,8 +54,12 @@ const span_format = `hidden lg:block bg-cotton-candy self-end mb-[12px] h-[4px]`
   title={title}
   description='Votaciones'
   background='bg-gradient-to-r from-[#05303A] to-black-pearl'
-  headerColor_bg='bg-transparent'
-  headerColor_text='text-cotton-candy'
+  headerProps={{
+    bgColor: 'bg-transparent',
+    textColor: 'text-cotton-candy',
+    showLogin: true,
+    buttonsStyle: Colors.CottonCandy
+  }}
 >
   <!-- Peepo background -->
   <div

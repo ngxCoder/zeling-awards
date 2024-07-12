@@ -1,9 +1,11 @@
 ---
+export const prerender = false
 import Layout from '../../layouts/Layout.astro'
 
 import LinkCategory from '../../components/LinkCategory.astro'
 
 import Categories from '../../data/testing/categories'
+import Colors from '../../enums/colors'
 
 const pageTitle = 'Categorias'
 ---
@@ -12,8 +14,12 @@ const pageTitle = 'Categorias'
   title={pageTitle}
   description='Categorias'
   background='bg-gradient-to-r from-[#05303A] to-black-pearl'
-  headerColor_bg='bg-transparent'
-  headerColor_text='text-cotton-candy'
+  headerProps={{
+    bgColor: 'bg-transparent',
+    textColor: 'text-cotton-candy',
+    showLogin: true,
+    buttonsStyle: Colors.CottonCandy
+  }}
 >
   <div class='grid items-center justify-center gap-y-28'>
     <!-- TITULO DE CATEGORIA -->
