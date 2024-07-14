@@ -4,14 +4,15 @@ import Layout from '../../layouts/Layout.astro'
 
 import LinkCategory from '../../components/LinkCategory.astro'
 
-import Categories from '../../data/testing/categories'
 import Colors from '../../enums/colors'
+import { GET, type Category } from '../api/categories'
 
-const pageTitle = 'Categorias'
+let response = await GET(Astro)
+const categories: Category[] = await response.json()
 ---
 
 <Layout
-  title={pageTitle}
+  title='Categorias'
   description='Categorias'
   background='bg-gradient-to-r from-[#05303A] to-black-pearl'
   headerProps={{
@@ -34,8 +35,8 @@ const pageTitle = 'Categorias'
     class='h-50 mt-15 flex max-w-[1800px] flex-wrap justify-center gap-4 p-10'
   >
     {
-      Categories.map((cat) => (
-        <LinkCategory title={cat} href={`/categorias/${cat}`} />
+      categories.map(({ name, url }) => (
+        <LinkCategory title={name} href={`/categorias/${url}`} />
       ))
     }
   </div>
