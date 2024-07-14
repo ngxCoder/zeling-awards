@@ -62,6 +62,10 @@ export function up(pgm) {
     url: {
       type: 'TEXT',
       notNull: true
+    },
+    order: {
+      type: 'INT',
+      notNull: true
     }
   })
 
