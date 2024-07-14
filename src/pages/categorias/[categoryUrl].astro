@@ -1,49 +1,18 @@
 ---
+export const prerender = false
 import Candidate from '../../components/Candidate.astro'
 import Layout from '../../layouts/Layout.astro'
 import Arrow from '../../components/icons/Arrow.astro'
-
-// IMPORTAR LISTAS DE PRUEBA
-import Categories from '../../data/testing/categories'
-import Candidates from '../../data/testing/candidates'
 import Colors from '../../enums/colors'
+import { GET } from '../api/category/[categoryUrl]'
 
-// CARGA CANDIDATOS Y LINKS A CATEGORIAS PREV Y SIG
-export async function getStaticPaths() {
-  let m_prev
-  let m_next
+const response = await GET(Astro)
+const category: Category = await response.json()
 
-  return Categories.map((categoria) => {
-    m_prev = Categories[Categories.indexOf(categoria) - 1]
-    m_next = Categories[Categories.indexOf(categoria) + 1]
-    if (Categories.indexOf(categoria) == 0) {
-      m_prev = './'
-    }
-    if (Categories.indexOf(categoria) == Categories.length - 1) {
-      m_next = './'
-    }
+const title = category.name
 
-    return {
-      params: { categoria },
-      props: {
-        Candidate_1: Candidates[Categories.indexOf(categoria)][0],
-        Candidate_2: Candidates[Categories.indexOf(categoria)][1],
-        Candidate_3: Candidates[Categories.indexOf(categoria)][2],
-        Candidate_4: Candidates[Categories.indexOf(categoria)][3],
-        m_prev,
-        m_next
-      }
-    }
-  })
-}
-
-const title = Astro.params.categoria
-const candidate1 = Astro.props.Candidate_1
-const candidate2 = Astro.props.Candidate_2
-const candidate3 = Astro.props.Candidate_3
-const candidate4 = Astro.props.Candidate_4
-const prev = Astro.props.m_prev
-const next = Astro.props.m_next
+const prev = category.prev?.url
+const next = category.next?.url
 
 //FORMATO DE TITULO
 
@@ -58,7 +27,11 @@ const span_format = `hidden lg:block bg-cotton-candy self-end mb-[12px] h-[4px]`
     bgColor: 'bg-transparent',
     textColor: 'text-cotton-candy',
     showLogin: true,
-    buttonsStyle: Colors.CottonCandy
+    buttonsStyle: Colors.CottonCandy,
+    routes: [
+      { route: '/', name: 'Inicio' },
+      { route: '/categorias', name: 'Categorias' }
+    ]
   }}
 >
   <!-- Peepo background -->
@@ -75,16 +48,14 @@ const span_format = `hidden lg:block bg-cotton-candy self-end mb-[12px] h-[4px]`
       <div class='flex justify-center'>
         <div class='grid-cols-[1fr_auto_1fr] lg:grid 2xl:w-[40%]'>
           <div class=`${span_format}`></div>
-          <h1
-            class=`text-[4rem] font-semibold text-cotton-candy tracking-wide underline`
-          >
+          <h1 class=`text-[4rem] font-semibold text-cotton-candy tracking-wide`>
             {title}
           </h1>
           <span class=`${span_format}`></span>
         </div>
       </div>
       <!-- CANDIDATOS -->
-      <div class='flex flex-wrap justify-center'>
+      <!-- <div class='flex flex-wrap justify-center'>
         <div class='flex flex-wrap justify-center'>
           <label
             class=`border-[3px] border-transparent m-5
@@ -189,17 +160,22 @@ const span_format = `hidden lg:block bg-cotton-candy self-end mb-[12px] h-[4px]`
             </div>
           </label>
         </div>
-      </div>
+      </div> -->
 
       <!-- BOTONES DE NAVEGACION Y CONFIRMACION -->
       <div class='flex justify-between sm:px-28'>
         <!-- BOTON PREV -->
-        <a href={prev} class=`px-5 text-[1.75rem] text-glacier-100`
-          ><div class='w-14'>
-            <Arrow />
-          </div>
-          Prev
-        </a>
+        {
+          prev && (
+            <a href={prev} class={`px-5 text-[1.75rem] text-glacier-100`}>
+              <div class='w-14'>
+                <Arrow />
+                Anterior
+              </div>
+            </a>
+          )
+        }
+
         <!-- BOTON VOTAR -->
         <button
           type='button'
@@ -212,15 +188,19 @@ const span_format = `hidden lg:block bg-cotton-candy self-end mb-[12px] h-[4px]`
           >Votar</button
         >
         <!-- BOTON SIG -->
-        <a
-          href={next}
-          class=`px-5 text-[1.75rem] text-glacier-100
-              text-center`
-          ><div class='w-14'>
-            <Arrow direction='right' />
-            Sig
-          </div>
-        </a>
+        {
+          next && (
+            <a
+              href={next}
+              class={`px-5 text-center text-[1.75rem] text-glacier-100`}
+            >
+              <div class='w-14'>
+                <Arrow direction='right' />
+                Siguiente
+              </div>
+            </a>
+          )
+        }
       </div>
     </form>
   </div>

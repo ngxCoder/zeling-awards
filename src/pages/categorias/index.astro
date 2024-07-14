@@ -5,9 +5,9 @@ import Layout from '../../layouts/Layout.astro'
 import LinkCategory from '../../components/LinkCategory.astro'
 
 import Colors from '../../enums/colors'
-import { GET, type Category } from '../api/categories'
+import { GET } from '../api/category'
 
-let response = await GET(Astro)
+const response = await GET(Astro)
 const categories: Category[] = await response.json()
 ---
 
