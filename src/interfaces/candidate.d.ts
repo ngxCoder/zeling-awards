@@ -1,0 +1,1 @@
+interface Candidate extends Video {}

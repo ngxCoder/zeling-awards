@@ -1,0 +1,13 @@
+.candidate:hover {
+    outline: 2px solid #ff6694; /*cotton-candy-400*/
+    outline-offset: 4px;
+    .image {
+      transform: scale(1.2);
+    }
+
+    .overlay-pink {
+      display: flex;
+      background: rgba(255, 102, 148, 0.4);
+      backdrop-filter: blur(2px) contrast(1.5);
+    }
+  }
