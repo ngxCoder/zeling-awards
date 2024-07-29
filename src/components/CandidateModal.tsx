@@ -50,14 +50,14 @@ export default function CandidateModal({
       <div className='flex justify-end gap-5'>
         <button
           type='button'
-          className='min-w-28 px-3 py-1 text-2xl text-cotton-candy ring-2  ring-cotton-candy'
+          className='min-w-28 px-3 py-1 text-2xl text-cotton-candy ring-2  ring-cotton-candy hover:ring-cotton-candy-300'
           onClick={onClose}
         >
           Cerrar
         </button>
         <button
           type='button'
-          className='min-w-28 bg-cotton-candy px-3 py-1 text-2xl text-black-pearl ring-2 ring-cotton-candy'
+          className='min-w-28 bg-cotton-candy px-3 py-1 text-2xl text-black-pearl ring-2 ring-cotton-candy hover:bg-cotton-candy-300 hover:ring-cotton-candy-300'
         >
           Votar
         </button>
