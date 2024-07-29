@@ -90,10 +90,6 @@ export function up(pgm) {
     thumbnail_url: {
       type: 'TEXT',
       notNull: false
-    },
-    source: {
-      type: 'TEXT',
-      notNull: false
     }
   })
 
