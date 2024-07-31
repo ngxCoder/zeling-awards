@@ -1,6 +1,5 @@
 ---
 export const prerender = false
-import Candidate from '../../components/Candidate.astro'
 import Layout from '../../layouts/Layout.astro'
 import Arrow from '../../components/icons/Arrow.astro'
 import Colors from '../../enums/colors'
@@ -40,10 +39,14 @@ const next = category.next?.url
     <!-- FORMULARIO DE VOTACION -->
     <div class='flex w-screen flex-1 flex-col justify-around'>
       <!-- TITULO DE CATEGORIA -->
-      <div class='flex justify-center'>
+      <div class='flex flex-col items-center justify-center gap-2'>
         <h1 class=`text-[4rem] font-semibold text-cotton-candy tracking-wide`>
           {title}
         </h1>
+        <p class=`text-xl text-cotton-candy-50 text-center opacity-50`>
+          Haz clic en el cuadrante para seleccionar a tu nominado <br /> Usa los
+          íconos para ver el video o abrir en una pestaña nueva
+        </p>
       </div>
       <!-- CANDIDATOS -->
       <CandidateSelector candidates={candidates} client:load />
