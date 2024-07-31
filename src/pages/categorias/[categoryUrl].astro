@@ -67,6 +67,7 @@ const next = category.next?.url
 
         <!-- BOTON VOTAR -->
         <button
+          id='vote'
           type='button'
           value='Votar'
           class=`cursor-pointer bg-cotton-candy
@@ -94,3 +95,16 @@ const next = category.next?.url
     </div>
   </div>
 </Layout>
+<script>
+  import { $selectedCandidateId } from '../../store/candidateStore'
+
+  const voteButton = document.querySelector('#vote') as HTMLButtonElement
+
+  $selectedCandidateId.subscribe((candidateId) => {
+    //enable vote button if candidate is selected
+  })
+
+  voteButton?.addEventListener('click', () => {
+    alert(`Votaste por ${$selectedCandidateId.get()}`)
+  })
+</script>

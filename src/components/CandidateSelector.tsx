@@ -2,6 +2,8 @@ import { useState } from 'react'
 import CandidateModal from './CandidateModal'
 import './CandidateSelector.css'
 import { icons as FeatherIcons } from 'feather-icons'
+import { useStore } from '@nanostores/react'
+import { $selectedCandidateId } from '../store/candidateStore'
 
 interface CandidateSelectorProps {
   candidates?: Candidate[]
@@ -17,9 +19,8 @@ export default function CandidateSelector({
     open: false,
     candidate: undefined
   })
-  const [selectedCandidateId, setSelectedCandidateId] = useState<
-    number | undefined
-  >(undefined)
+
+  const selectedCandidateId = useStore($selectedCandidateId)
 
   return (
     <div className='flex flex-wrap justify-center gap-8'>
@@ -33,7 +34,7 @@ export default function CandidateSelector({
             className={`candidate relative h-52 w-72 overflow-hidden bg-slate-600 ${
               isSelected && 'selected'
             }`}
-            onClick={() => setSelectedCandidateId(id)}
+            onClick={() => $selectedCandidateId.set(id)}
           >
             <div
               style={{
