@@ -1,0 +1,3 @@
+interface VoteRequest {
+  candidateId: number
+}

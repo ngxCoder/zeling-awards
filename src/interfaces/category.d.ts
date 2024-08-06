@@ -5,5 +5,5 @@ interface Category {
   order: number
   prev?: Category
   next?: Category
-  videos?: Video[]
+  candidates: Candidate[]
 }

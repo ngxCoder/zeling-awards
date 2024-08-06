@@ -3,10 +3,10 @@ import CandidateModal from './CandidateModal'
 import './CandidateSelector.css'
 import { icons as FeatherIcons } from 'feather-icons'
 import { useStore } from '@nanostores/react'
-import { $selectedCandidateId } from '../store/candidateStore'
+import { $selectedCandidateId } from '../store/voteStore'
 
 interface CandidateSelectorProps {
-  candidates?: Candidate[]
+  candidates: Candidate[]
 }
 
 export default function CandidateSelector({

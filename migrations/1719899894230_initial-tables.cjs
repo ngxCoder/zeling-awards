@@ -69,7 +69,7 @@ export function up(pgm) {
     }
   })
 
-  pgm.createTable('videos', {
+  pgm.createTable('candidates', {
     id: {
       type: 'SERIAL',
       primaryKey: true
@@ -103,10 +103,10 @@ export function up(pgm) {
       notNull: true,
       references: 'users(id)'
     },
-    video_id: {
+    candidate_id: {
       type: 'INT',
       notNull: true,
-      references: 'videos(id)'
+      references: 'candidates(id)'
     },
     category_id: {
       type: 'INT',
@@ -114,4 +114,10 @@ export function up(pgm) {
       references: 'categories(id)'
     }
   })
+
+  pgm.addConstraint(
+    'votes',
+    'unique_user_id_category_id',
+    'UNIQUE(user_id, category_id)'
+  )
 }

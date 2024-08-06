@@ -3,18 +3,27 @@ export const prerender = false
 import Layout from '../../layouts/Layout.astro'
 import Arrow from '../../components/icons/Arrow.astro'
 import Colors from '../../enums/colors'
-import { GET } from '../api/category/[categoryUrl]'
+import { GET as GETCategory } from '../api/category/[categoryUrl]'
+import { GET as GETVote } from '../api/category/vote'
 import CandidateSelector from '../../components/CandidateSelector'
+import safeFetch from '../../helpers/safeFetch'
+import { $selectedCandidateId } from '../../store/voteStore'
 
-const response = await GET(Astro)
-const category: Category = await response.json()
+const category = await safeFetch<Category>(GETCategory(Astro))
+
+if (!category) {
+  return new Response(null, {
+    status: 404
+  })
+}
 
 const title = category.name
-
-const candidates = category.videos
-
+const candidates = category.candidates
 const prev = category.prev?.url
 const next = category.next?.url
+
+const vote = await safeFetch<Vote>(GETVote(Astro))
+$selectedCandidateId.set(vote?.candidate_id)
 ---
 
 <Layout
@@ -44,7 +53,7 @@ const next = category.next?.url
           {title}
         </h1>
         <p class=`text-xl text-cotton-candy-50 text-center opacity-50`>
-          Haz clic en el cuadrante para seleccionar a tu nominado <br /> Usa los
+          Haz clic en el cuadrante para seleccionar tu clip favorito <br /> Usa los
           íconos para ver el video o abrir en una pestaña nueva
         </p>
       </div>
@@ -96,15 +105,22 @@ const next = category.next?.url
   </div>
 </Layout>
 <script>
-  import { $selectedCandidateId } from '../../store/candidateStore'
+  import { $selectedCandidateId } from '../../store/voteStore'
 
   const voteButton = document.querySelector('#vote') as HTMLButtonElement
 
-  $selectedCandidateId.subscribe((candidateId) => {
+  $selectedCandidateId.subscribe((candidate) => {
     //enable vote button if candidate is selected
   })
 
   voteButton?.addEventListener('click', () => {
-    alert(`Votaste por ${$selectedCandidateId.get()}`)
+    const candidateId = $selectedCandidateId.get()
+
+    fetch(`/api/category/vote`, {
+      method: 'POST',
+      body: JSON.stringify({
+        candidateId
+      })
+    })
   })
 </script>

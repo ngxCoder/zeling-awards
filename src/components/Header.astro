@@ -9,10 +9,11 @@ export interface Props {
   routes?: { route: string; name: string }[]
   showSocials?: boolean
   showLogin?: boolean
-  buttonsStyle: Colors 
+  buttonsStyle: Colors
 }
 
-const { bgColor, textColor, showSocials, showLogin, buttonsStyle, routes } = Astro.props
+const { bgColor, textColor, showSocials, showLogin, buttonsStyle, routes } =
+  Astro.props
 const user = Astro.locals.user
 const showSignOut = import.meta.env.SHOW_SIGN_OUT === 'true'
 ---
@@ -28,21 +29,12 @@ const showSignOut = import.meta.env.SHOW_SIGN_OUT === 'true'
   </a>
 
   <nav class=`flex items-center justify-center gap-7 ${textColor}`>
-    {
-      routes?.map(({ route, name }) => (
-        <a href={route}>{name}</a>
-      ))
-    }
+    {routes?.map(({ route, name }) => <a href={route}>{name}</a>)}
   </nav>
   <div class='flex-grow'></div>
   {
     showSocials && (
-      <Button
-        id='discord'
-        color={buttonsStyle}
-        variant='outline'
-        size='md'
-      >
+      <Button id='discord' color={buttonsStyle} variant='outline' size='md'>
         <div class='flex'>
           <Discord class='mr-2 size-9' />
           <span>Discord</span>
@@ -51,39 +43,39 @@ const showSignOut = import.meta.env.SHOW_SIGN_OUT === 'true'
     )
   }
 
-  { showLogin &&
-  <>
   {
-    user ? (
+    showLogin && (
       <>
-
-        <div class={`flex flex-row items-center pointer-events-none ${textColor}`}>
-          <img src={user?.profileImageUrl} class="size-12 rounded-full"/> 
-          <span class='text-2xl ml-2'>{user.username}</span>
-        </div>
-        {showSignOut && (
-          <Button
-            id='logout'
-            color={buttonsStyle}
-            variant='outline'
-            size='md'
-          >
+        {user ? (
+          <>
+            <div
+              class={`pointer-events-none flex flex-row items-center ${textColor}`}
+            >
+              <img src={user?.profileImageUrl} class='size-12 rounded-full' />
+              <span class='ml-2 text-2xl'>{user.username}</span>
+            </div>
+            {showSignOut && (
+              <Button
+                id='logout'
+                color={buttonsStyle}
+                variant='outline'
+                size='md'
+              >
+                <div class='flex'>
+                  <span>Cerrar Sesión</span>
+                </div>
+              </Button>
+            )}
+          </>
+        ) : (
+          <Button id='login' color={buttonsStyle} variant='outline' size='md'>
             <div class='flex'>
-              <span>Cerrar Sesión</span>
+              <span>Iniciar Sesión</span>
             </div>
           </Button>
-          <form id="logoutForm" method="post" action="/api/logout"></form>
         )}
       </>
-    ) : (
-      <Button id='login' color={buttonsStyle} variant='outline' size='md'>
-        <div class='flex'>
-          <span>Iniciar Sesión</span>
-        </div>
-      </Button>
     )
-  }
-  </>
   }
 </header>
 <script>
@@ -101,7 +93,7 @@ const showSignOut = import.meta.env.SHOW_SIGN_OUT === 'true'
     window.open('/login/twitch', '_self')
   })
 
-  logoutButton?.addEventListener('click', () => {
-    logoutForm?.submit()
+  logoutButton?.addEventListener('click', async () => {
+    await fetch('/api/logout', { method: 'POST' })
   })
 </script>

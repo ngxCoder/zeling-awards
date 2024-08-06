@@ -8,7 +8,7 @@
  * @returns {Promise<void> | void}
  */
 exports.up = (pgm) => {
-  pgm.sql(`INSERT INTO videos (title, category_id, url, thumbnail_url) VALUES 
+  pgm.sql(`INSERT INTO candidates (title, category_id, url, thumbnail_url) VALUES 
   ('Nominado 1', 1, 'https://www.youtube.com/embed/mE9ERTRYzaU?si=QYbELN2nEwUmmpQs', 'https://imagenes.20minutos.es/files/image_640_360/uploads/imagenes/2022/06/03/la-streamer-zeling-en-directo.png'),
   ('Nominado 2', 1, 'https://www.youtube.com/embed/mE9ERTRYzaU?si=QYbELN2nEwUmmpQs', 'https://imagenes.20minutos.es/files/image_640_360/uploads/imagenes/2022/06/03/la-streamer-zeling-en-directo.png'),
   ('Nominado 3', 1, 'https://www.youtube.com/embed/mE9ERTRYzaU?si=QYbELN2nEwUmmpQs', 'https://imagenes.20minutos.es/files/image_640_360/uploads/imagenes/2022/06/03/la-streamer-zeling-en-directo.png'),
@@ -107,5 +107,6 @@ exports.up = (pgm) => {
  * @returns {Promise<void> | void}
  */
 exports.down = (pgm) => {
-  pgm.sql(`DELETE FROM videos;`)
+  pgm.sql(`DELETE FROM votes;`)
+  pgm.sql(`DELETE FROM candidates;`)
 }

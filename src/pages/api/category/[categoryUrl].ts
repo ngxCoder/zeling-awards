@@ -4,7 +4,7 @@ import { db } from '../../../lib/db'
 export const prerender = false
 
 export async function GET(context: APIContext): Promise<Response> {
-  const { categoryUrl } = context.params
+  const categoryUrl = context.params.categoryUrl
 
   const { rows: categoryRows } =
     await db.sql`SELECT * FROM categories WHERE url = ${categoryUrl} LIMIT 1;`
@@ -17,10 +17,10 @@ export async function GET(context: APIContext): Promise<Response> {
     })
   }
 
-  const { rows: videosRows } =
-    await db.sql`SELECT * FROM videos WHERE category_id = ${category.id};`
+  const { rows: candidatesRows } =
+    await db.sql`SELECT * FROM candidates WHERE category_id = ${category.id};`
 
-  category.videos = videosRows as Video[]
+  category.candidates = candidatesRows as Candidate[]
 
   const { rows: previousCategoryRows } =
     await db.sql`SELECT * FROM categories WHERE "order" = ${category.order - 1} LIMIT 1;`
