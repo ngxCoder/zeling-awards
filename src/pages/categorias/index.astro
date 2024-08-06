@@ -4,30 +4,30 @@ import Layout from '../../layouts/Layout.astro'
 
 import LinkCategory from '../../components/LinkCategory.astro'
 
-import Categories from '../../data/testing/categories'
 import Colors from '../../enums/colors'
+import { GET } from '../api/category'
 
-const pageTitle = 'Categorias'
+const response = await GET(Astro)
+const categories: Category[] = await response.json()
 ---
 
 <Layout
-  title={pageTitle}
+  title='Categorias'
   description='Categorias'
   background='bg-gradient-to-r from-[#05303A] to-black-pearl'
   headerProps={{
     bgColor: 'bg-transparent',
     textColor: 'text-cotton-candy',
     showLogin: true,
-    buttonsStyle: Colors.CottonCandy
+    buttonsStyle: Colors.CottonCandy,
+    routes: [{ route: '/', name: 'Inicio' }]
   }}
 >
   <div class='grid items-center justify-center gap-y-28'>
     <!-- TITULO DE CATEGORIA -->
     <div class='flex justify-center'>
-      <h1
-        class=`text-[4rem] font-semibold text-cotton-candy tracking-wide underline`
-      >
-        Categorias
+      <h1 class=`text-5xl font-semibold text-cotton-candy tracking-wide`>
+        Categorías
       </h1>
     </div>
   </div>
@@ -35,8 +35,8 @@ const pageTitle = 'Categorias'
     class='h-50 mt-15 flex max-w-[1800px] flex-wrap justify-center gap-4 p-10'
   >
     {
-      Categories.map((cat) => (
-        <LinkCategory title={cat} href={`/categorias/${cat}`} />
+      categories.map(({ name, url }) => (
+        <LinkCategory title={name} href={`/categorias/${url}`} />
       ))
     }
   </div>

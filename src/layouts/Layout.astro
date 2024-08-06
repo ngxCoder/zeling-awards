@@ -23,7 +23,19 @@ const {
 } = Astro.props
 ---
 
-<!doctype html>
+<style>
+  /* Unscoped, delivered as-is to the browser. */
+  .feather {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+</style>
+
 <html lang='en'>
   <head>
     <meta charset='UTF-8' />

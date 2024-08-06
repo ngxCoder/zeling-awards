@@ -8,11 +8,11 @@ import Layout from '../layouts/Layout.astro'
 import SectionContainer from '../components/SectionContainer.astro'
 import Jumbotron from '../components/Jumbotron.astro'
 import LinkedList from '../components/LinkedList.astro'
-import type { Category } from '../models/Category'
 import bgSepe1 from '../../public/bg-sepe1.webp'
 import bgSepe2 from '../../public/bg-sepe2.webp'
 
-const categories: Category[] = [
+const categories: { name: string }[] = [
+  //TODO: retrieve categories
   {
     name: 'Category 1'
   },
@@ -50,7 +50,8 @@ const items = [
     bgColor: 'bg-cotton-candy',
     textColor: 'text-black',
     showSocials: true,
-    buttonsStyle: Colors.BlackPearl
+    buttonsStyle: Colors.BlackPearl,
+    routes: [{ route: '/categorias', name: 'Categorias' }]
   }}
 >
   <div

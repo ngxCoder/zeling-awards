@@ -6,39 +6,35 @@ import Discord from './icons/Discord.astro'
 export interface Props {
   bgColor: string
   textColor: string
+  routes?: { route: string; name: string }[]
   showSocials?: boolean
   showLogin?: boolean
-  buttonsStyle: Colors 
+  buttonsStyle: Colors
 }
 
-const { bgColor, textColor, showSocials, showLogin, buttonsStyle } = Astro.props
+const { bgColor, textColor, showSocials, showLogin, buttonsStyle, routes } =
+  Astro.props
 const user = Astro.locals.user
 const showSignOut = import.meta.env.SHOW_SIGN_OUT === 'true'
 ---
 
-<header class=`flex flex-row items-center gap-7 p-5 text-2xl ${bgColor}`>
+<header class=`flex flex-row items-center gap-4 py-5 px-12 text-2xl ${bgColor}`>
   <a href='/'>
-    <div class='h-10 w-10 rounded-full bg-[radial-gradient(#000,#0000)]'>
+    <div class='size-12 rounded-full bg-[radial-gradient(#000,#0000)]'>
       <div
-        class="h-10 w-10 bg-[url('/peepoZeling.webp')] bg-[_80%_80%] bg-center bg-no-repeat"
+        class="size-12 bg-[url('/peepoZeling.webp')] bg-[_80%_80%] bg-center bg-no-repeat"
       >
       </div>
     </div>
   </a>
 
   <nav class=`flex items-center justify-center gap-7 ${textColor}`>
-    <!-- <a href='#'>Vota</a> -->
-    <a href='/categorias'>Categorias</a>
+    {routes?.map(({ route, name }) => <a href={route}>{name}</a>)}
   </nav>
   <div class='flex-grow'></div>
   {
     showSocials && (
-      <Button
-        id='discord'
-        color={buttonsStyle}
-        variant='outline'
-        size='md'
-      >
+      <Button id='discord' color={buttonsStyle} variant='outline' size='md'>
         <div class='flex'>
           <Discord class='mr-2 size-9' />
           <span>Discord</span>
@@ -47,39 +43,39 @@ const showSignOut = import.meta.env.SHOW_SIGN_OUT === 'true'
     )
   }
 
-  { showLogin &&
-  <>
   {
-    user ? (
+    showLogin && (
       <>
-
-        <div class={`flex flex-row items-center pointer-events-none ${textColor}`}>
-          <img src={user?.profileImageUrl} class="size-12 rounded-full"/> 
-          <span class='text-2xl ml-2'>{user.username}</span>
-        </div>
-        {showSignOut && (
-          <Button
-            id='logout'
-            color={buttonsStyle}
-            variant='outline'
-            size='md'
-          >
+        {user ? (
+          <>
+            <div
+              class={`pointer-events-none flex flex-row items-center ${textColor}`}
+            >
+              <img src={user?.profileImageUrl} class='size-12 rounded-full' />
+              <span class='ml-2 text-2xl'>{user.username}</span>
+            </div>
+            {showSignOut && (
+              <Button
+                id='logout'
+                color={buttonsStyle}
+                variant='outline'
+                size='md'
+              >
+                <div class='flex'>
+                  <span>Cerrar Sesión</span>
+                </div>
+              </Button>
+            )}
+          </>
+        ) : (
+          <Button id='login' color={buttonsStyle} variant='outline' size='md'>
             <div class='flex'>
-              <span>Cerrar Sesión</span>
+              <span>Iniciar Sesión</span>
             </div>
           </Button>
-          <form id="logoutForm" method="post" action="/api/logout"></form>
         )}
       </>
-    ) : (
-      <Button id='login' color={buttonsStyle} variant='outline' size='md'>
-        <div class='flex'>
-          <span>Iniciar Sesión</span>
-        </div>
-      </Button>
     )
-  }
-  </>
   }
 </header>
 <script>
@@ -97,7 +93,7 @@ const showSignOut = import.meta.env.SHOW_SIGN_OUT === 'true'
     window.open('/login/twitch', '_self')
   })
 
-  logoutButton?.addEventListener('click', () => {
-    logoutForm?.submit()
+  logoutButton?.addEventListener('click', async () => {
+    await fetch('/api/logout', { method: 'POST' })
   })
 </script>

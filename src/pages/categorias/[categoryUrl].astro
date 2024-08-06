@@ -1,0 +1,126 @@
+---
+export const prerender = false
+import Layout from '../../layouts/Layout.astro'
+import Arrow from '../../components/icons/Arrow.astro'
+import Colors from '../../enums/colors'
+import { GET as GETCategory } from '../api/category/[categoryUrl]'
+import { GET as GETVote } from '../api/category/vote'
+import CandidateSelector from '../../components/CandidateSelector'
+import safeFetch from '../../helpers/safeFetch'
+import { $selectedCandidateId } from '../../store/voteStore'
+
+const category = await safeFetch<Category>(GETCategory(Astro))
+
+if (!category) {
+  return new Response(null, {
+    status: 404
+  })
+}
+
+const title = category.name
+const candidates = category.candidates
+const prev = category.prev?.url
+const next = category.next?.url
+
+const vote = await safeFetch<Vote>(GETVote(Astro))
+$selectedCandidateId.set(vote?.candidate_id)
+---
+
+<Layout
+  title={title}
+  description='Votaciones'
+  background='bg-gradient-to-r from-[#05303A] to-black-pearl'
+  headerProps={{
+    bgColor: 'bg-transparent',
+    textColor: 'text-cotton-candy',
+    showLogin: true,
+    buttonsStyle: Colors.CottonCandy,
+    routes: [
+      { route: '/', name: 'Inicio' },
+      { route: '/categorias', name: 'Categorias' }
+    ]
+  }}
+>
+  <!-- Peepo background -->
+  <div
+    class="flex min-h-[90svh] bg-[url('/Prayge.svg')] bg-[_80%_80%] bg-bottom bg-no-repeat"
+  >
+    <!-- FORMULARIO DE VOTACION -->
+    <div class='flex w-screen flex-1 flex-col justify-around'>
+      <!-- TITULO DE CATEGORIA -->
+      <div class='flex flex-col items-center justify-center gap-2'>
+        <h1 class=`text-[4rem] font-semibold text-cotton-candy tracking-wide`>
+          {title}
+        </h1>
+        <p class=`text-xl text-cotton-candy-50 text-center opacity-50`>
+          Haz clic en el cuadrante para seleccionar tu clip favorito <br /> Usa los
+          íconos para ver el video o abrir en una pestaña nueva
+        </p>
+      </div>
+      <!-- CANDIDATOS -->
+      <CandidateSelector candidates={candidates} client:load />
+
+      <!-- BOTONES DE NAVEGACION Y CONFIRMACION -->
+      <div class='flex justify-between sm:px-28'>
+        <!-- BOTON PREV -->
+        {
+          prev && (
+            <a href={prev} class={`px-5 text-[1.75rem] text-glacier-100`}>
+              <div class='w-14'>
+                <Arrow />
+                Anterior
+              </div>
+            </a>
+          )
+        }
+
+        <!-- BOTON VOTAR -->
+        <button
+          id='vote'
+          type='button'
+          value='Votar'
+          class=`cursor-pointer bg-cotton-candy
+              from-cotton-candy to-cotton-candy-400 px-16 max-h-16 font-bold tracking-wide
+              shadow-[-10px_10px_black,-10px_10px_0_2px_rgb(255,184,208)]
+              transition-all hover:-translate-x-5 hover:translate-y-2
+              hover:shadow-none hover:transition-all text-[2rem]`
+          >Votar</button
+        >
+        <!-- BOTON SIG -->
+        {
+          next && (
+            <a
+              href={next}
+              class={`px-5 text-center text-[1.75rem] text-glacier-100`}
+            >
+              <div class='w-14'>
+                <Arrow direction='right' />
+                Siguiente
+              </div>
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</Layout>
+<script>
+  import { $selectedCandidateId } from '../../store/voteStore'
+
+  const voteButton = document.querySelector('#vote') as HTMLButtonElement
+
+  $selectedCandidateId.subscribe((candidate) => {
+    //enable vote button if candidate is selected
+  })
+
+  voteButton?.addEventListener('click', () => {
+    const candidateId = $selectedCandidateId.get()
+
+    fetch(`/api/category/vote`, {
+      method: 'POST',
+      body: JSON.stringify({
+        candidateId
+      })
+    })
+  })
+</script>

@@ -1,0 +1,33 @@
+.candidate {
+    &.selected {
+        outline: 2px solid #ffb8d0; /*cotton-candy*/
+        outline-offset: 4px;
+        
+
+        .selected-icon {
+            position: absolute;
+            bottom: 10px;
+            left: calc(50% - 18px);
+            z-index: 10;
+            color: #ffb8d0;
+            filter: drop-shadow(0 0 10px rgba(255, 102, 148, 1)) drop-shadow(0 0 10px rgba(0, 0, 0, 1)) ;
+            
+        }
+    }
+
+    &:hover {
+        outline: 2px solid #ff6694; /*cotton-candy-400*/
+        outline-offset: 4px;
+        .image {
+        transform: scale(1.2);
+        }
+
+        .overlay-pink {
+            display: flex;
+            background: rgba(255, 102, 148, 0.4);
+            backdrop-filter: blur(2px) contrast(1.5);
+          }
+    }
+    
+    
+}

@@ -1,14 +1,12 @@
-import { lucia } from './lib/auth'
 import { defineMiddleware } from 'astro:middleware'
+import { lucia } from '../lib/auth'
 
-export const prerender = false
-
-export const onRequest = defineMiddleware(async (context, next) => {
+export default defineMiddleware(async (context, next) => {
   const sessionId = context.cookies.get(lucia.sessionCookieName)?.value ?? null
   if (!sessionId) {
     context.locals.user = null
     context.locals.session = null
-    return next()
+    return next('/')
   }
 
   const { session, user } = await lucia.validateSession(sessionId)
