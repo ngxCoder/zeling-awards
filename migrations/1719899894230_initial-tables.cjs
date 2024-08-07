@@ -59,6 +59,10 @@ export function up(pgm) {
       type: 'TEXT',
       notNull: true
     },
+    description: {
+      type: 'TEXT',
+      notNull: false
+    },
     url: {
       type: 'TEXT',
       notNull: true
